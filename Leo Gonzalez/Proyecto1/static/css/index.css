@@ -1,0 +1,926 @@
+:root {
+    --color-primario: #ff6f61;
+    --color-secundario: #4a90e2;
+    --color-fondo: #ffffff;
+    --color-texto: #2d3748;
+    --color-texto-claro: #718096;
+    --color-borde: #e2e8f0;
+    --fuente-principal: 'Inter', sans-serif;
+    --fuente-secundaria: 'Playfair Display', serif;
+}
+
+/* ============================================
+   RESET Y ESTILOS BASE
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    color: var(--color-texto);
+    line-height: 1.6;
+    background-color: var(--color-fondo);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   NAVBAR MINIMALISTA
+   ============================================ */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-borde);
+    padding: 1.5rem 0;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 1rem 0;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.navbar ul a {
+    text-decoration: none;
+    color: var(--color-texto);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar ul a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-primario);
+    transition: width 0.3s ease;
+}
+
+.navbar ul a:hover {
+    color: var(--color-primario);
+}
+
+.navbar ul a:hover::after {
+    width: 100%;
+}
+
+/* ============================================
+   HERO SECTION MINIMALISTA
+   ============================================ */
+.hero {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)),
+        url("../img/portada.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.5rem;
+}
+
+.hero-contenido {
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 4rem 2rem;
+}
+
+.hero-contenido>p:first-child {
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+#hero-titulo {
+    font-family: var(--fuente-secundaria);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+#hero-descripcion {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    font-weight: 300;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ============================================
+   BOTONES MINIMALISTAS
+   ============================================ */
+.btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--color-primario);
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    background: #ff5a4a;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 111, 97, 0.2);
+}
+
+/* ============================================
+   SECCIONES GENERALES
+   ============================================ */
+.seccion {
+    padding: 6rem 1.5rem;
+    scroll-margin-top: 80px;
+}
+
+.contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.seccion-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.seccion-header h2 {
+    font-family: var(--fuente-secundaria);
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--color-texto);
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+.seccion-header p {
+    color: var(--color-texto-claro);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ============================================
+   NOSOTROS
+   ============================================ */
+.nosotros-contenido {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: var(--color-texto-claro);
+}
+
+.nosotros-contenido p {
+    margin-bottom: 2rem;
+}
+
+.nosotros-contenido p:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   SERVICIOS MINIMALISTAS
+   ============================================ */
+.servicio-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    height: 320px;
+    cursor: pointer;
+}
+
+.servicio-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+/* Overlay */
+.servicio-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.2));
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+}
+
+.overlay-contenido {
+    color: #fff;
+    transform: translateY(20px);
+    transition: transform 0.5s ease;
+}
+
+.overlay-contenido h3 {
+    margin-bottom: 8px;
+    font-size: 1.4rem;
+}
+
+.overlay-contenido p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Hover effects */
+.servicio-card:hover img {
+    transform: scale(1.1);
+}
+
+.servicio-card:hover .servicio-overlay {
+    opacity: 1;
+}
+
+.servicio-card:hover .overlay-contenido {
+    transform: translateY(0);
+}
+
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.servicio-card {
+    background: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.servicio-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primario);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.servicio-icono {
+    font-size: 2.5rem;
+    color: var(--color-primario);
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.servicio-card:hover .servicio-icono {
+    transform: scale(1.1);
+}
+
+.servicio-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-texto);
+    margin-bottom: 1rem;
+}
+
+.servicio-card p {
+    color: var(--color-texto-claro);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.servicio-card {
+    perspective: 1200px;
+}
+
+.servicio-inner {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+}
+
+.servicio-card:hover .servicio-inner {
+    transform: rotateY(180deg);
+}
+
+/* CARAS */
+.servicio-front,
+.servicio-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    backface-visibility: hidden;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* FRENTE */
+.servicio-front {
+    background: #ffffff;
+    padding: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.servicio-icono {
+    font-size: 42px;
+    color: #111;
+    margin-bottom: 20px;
+}
+
+.servicio-front h3 {
+    margin-bottom: 10px;
+}
+
+/* REVERSO */
+.servicio-back {
+    transform: rotateY(180deg);
+}
+
+.servicio-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.servicio-back-info {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.servicio-back-info h3 {
+    margin-bottom: 10px;
+}
+
+
+/* ============================================
+   GALERÍA MINIMALISTA
+   ============================================ */
+.galeria {
+    background: #f8fafc;
+}
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 0;
+    margin: 0;
+}
+
+.galeria-item {
+    filter: grayscale();
+    position: relative;
+    /* border-radius: 8px; */
+    overflow: hidden;
+    height: 280px;
+    background: var(--color-fondo);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.galeria-item:hover {
+    filter: none;
+}
+
+.galeria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.galeria-item:hover img {
+    transform: scale(1.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.galeria-item figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+    padding: 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.galeria-item:hover figcaption {
+    transform: translateY(0);
+}
+
+.galeria-item h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.galeria-item span {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    font-weight: 300;
+}
+
+/* ============================================
+   FORMULARIO DE CONTACTO MINIMALISTA
+   ============================================ */
+.form-contacto {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.form-grupo {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-grupo-full {
+    grid-column: 1 / -1;
+}
+
+.form-grupo label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-texto);
+    margin-bottom: 0.5rem;
+}
+
+.form-grupo input,
+.form-grupo textarea {
+    padding: 1rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: var(--color-fondo);
+}
+
+.form-grupo input:focus,
+.form-grupo textarea:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(255, 111, 97, 0.1);
+}
+
+.form-grupo textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.form-acciones {
+    text-align: center;
+}
+
+/* ============================================
+   FOOTER MINIMALISTA
+   ============================================ */
+.footer {
+    background: var(--color-texto);
+    color: #cbd5e0;
+    padding: 4rem 1.5rem 2rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-titulo {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 1.5rem;
+    font-family: var(--fuente-secundaria);
+}
+
+.footer-texto {
+    line-height: 1.7;
+    font-size: 0.95rem;
+    max-width: 300px;
+}
+
+.footer-redes {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.footer-redes a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-redes a:hover {
+    background: var(--color-primario);
+    transform: translateY(-2px);
+}
+
+.footer-contacto {
+    list-style: none;
+}
+
+.footer-contacto li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.footer-contacto i {
+    color: var(--color-primario);
+    width: 20px;
+}
+
+.footer-derechos {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-derechos p {
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   BOTONES FLOTANTES MINIMALISTAS
+   ============================================ */
+.boton-redes-flotante {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 999;
+}
+
+.red-social-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.red-social-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.red-social-btn:hover::before {
+    left: 100%;
+}
+
+.red-social-btn.instagram {
+    background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf);
+}
+
+.red-social-btn.whatsapp {
+    background: #25D366;
+}
+
+.red-social-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1024px) {
+    .seccion {
+        padding: 5rem 1.5rem;
+    }
+
+    .galeria-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 0;
+    }
+
+    .navbar ul {
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .hero {
+        background-attachment: scroll;
+        min-height: 90vh;
+    }
+
+    .hero-contenido {
+        padding: 3rem 1rem;
+    }
+
+    #hero-titulo {
+        font-size: 2.2rem;
+    }
+
+    .seccion {
+        padding: 4rem 1.5rem;
+    }
+
+    .seccion-header h2 {
+        font-size: 2rem;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .servicios-grid,
+    .galeria-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .servicio-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .galeria-item {
+        height: 250px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .footer-texto {
+        max-width: 100%;
+    }
+
+    .footer-redes {
+        justify-content: center;
+    }
+
+    .footer-contacto li {
+        justify-content: center;
+    }
+
+    .boton-redes-flotante {
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-contenido {
+        padding: 2rem 1rem;
+    }
+
+    #hero-titulo {
+        font-size: 1.8rem;
+    }
+
+    #hero-descripcion {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 0.875rem 2rem;
+        font-size: 0.95rem;
+    }
+
+    .seccion-header h2 {
+        font-size: 1.75rem;
+    }
+
+    .seccion-header p {
+        font-size: 1rem;
+    }
+
+    .servicio-card {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .servicio-icono {
+        font-size: 2rem;
+    }
+
+    .galeria-item {
+        height: 220px;
+    }
+
+    .red-social-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+}
+
+/* ============================================
+   ANIMACIONES SUTILES
+   ============================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.seccion {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.servicio-card,
+.galeria-item {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.servicio-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.servicio-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.servicio-card:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.galeria-item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.galeria-item:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.galeria-item:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.galeria-item:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+.galeria-item:nth-child(6) {
+    animation-delay: 0.5s;
+}
+
+/* ============================================
+   UTILIDADES
+   ============================================ */
+.hidden {
+    display: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-1 {
+    margin-top: 0.5rem;
+}
+
+.mt-2 {
+    margin-top: 1rem;
+}
+
+.mt-3 {
+    margin-top: 1.5rem;
+}
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
+.mb-1 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-2 {
+    margin-bottom: 1rem;
+}
+
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+.mb-4 {
+    margin-bottom: 2rem;
+}
