@@ -120,7 +120,7 @@ body {
     width: 60vw;
     height: 70vh;
     /* backdrop-filter: blur(14px); */
-    -webkit-backdrop-filter: blur(14px);
+    /* -webkit-backdrop-filter: blur(14px); */
 
     background: radial-gradient(ellipse at center,
             rgba(0, 0, 0, 0.35) 0%,
@@ -470,7 +470,7 @@ body {
     position: relative;
     /* border-radius: 8px; */
     overflow: hidden;
-    height: 280px;
+    height:400px;
     background: var(--color-fondo);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
@@ -740,7 +740,10 @@ body {
     }
 
     .galeria-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .galeria-item {
+        height: 400px;
     }
 }
 
@@ -791,7 +794,7 @@ body {
     }
 
     .galeria-item {
-        height: 250px;
+        height: 800px;
     }
 
     .footer-grid {
@@ -853,7 +856,7 @@ body {
     }
 
     .galeria-item {
-        height: 220px;
+        height: 350px;
     }
 
     .red-social-btn {
