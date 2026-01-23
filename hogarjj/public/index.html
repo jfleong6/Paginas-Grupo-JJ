@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Gastos</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="image/png" href="icono.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2344/2344132.png">
+
+</head>
+
+<body>
+
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="brand">📊 Finanzas</div>
+            <ul>
+                <li onclick="navegar('home')" class="active" id="nav-home">
+                    <span class="material-icons">dashboard</span> Home
+                </li>
+                <li onclick="navegar('ingresos')" id="nav-ingresos">
+                    <span class="material-icons">savings</span> Registrar Ingreso
+                </li>
+                <li onclick="navegar('gastos')" id="nav-gastos">
+                    <span class="material-icons">money_off</span> Registrar Gasto
+                </li>
+                <li onclick="navegar('traslados')" id="nav-traslados">
+                    <span class="material-icons">swap_horiz</span> Traslados
+                </li>
+                <li onclick="navegar('bolsillos')" id="nav-bolsillos">
+                    <span class="material-icons">account_balance_wallet</span> Bolsillos
+                </li>
+                <li onclick="navegar('categorias')" id="nav-categorias">
+                    <span class="material-icons">category</span> Categorías
+                </li>
+            </ul>
+        </nav>
+
+        <main class="content">
+
+            <section id="view-home" class="vista">
+                <h2>Estado de mis Presupuestos</h2>
+                <div id="dashboard-grid" class="grid-cards">
+                </div>
+            </section>
+
+            <section id="view-ingresos" class="vista hidden">
+                <h2>💰 Nuevo Ingreso</h2>
+                <div class="card form-card">
+                    <label>¿A dónde entró el dinero?</label>
+                    <select id="ingreso-bolsillo" class="input-full">
+                        <option>Cargando bolsillos...</option>
+                    </select>
+
+                    <input type="number" id="ingreso-monto" placeholder="¿Cuánto recibiste?" class="input-full">
+                    <input type="text" id="ingreso-desc" placeholder="Descripción (ej: Nómina, Venta)"
+                        class="input-full">
+
+                    <button id="btnGuardarIngreso" class="btn-primary" style="background-color: var(--success);">
+                        Guardar Ingreso
+                    </button>
+                </div>
+            </section>
+
+            <section id="view-gastos" class="vista hidden">
+                <h2>💸 Nuevo Gasto</h2>
+                <div class="card form-card">
+                    <select id="gasto-categoria" class="input-full">
+                        <option>Cargando categorías...</option>
+                    </select>
+                    <select id="gasto-bolsillo" class="input-full">
+                        <option>Cargando bolsillos...</option>
+                    </select>
+                    <input type="number" id="gasto-monto" placeholder="¿Cuánto costó?" class="input-full">
+                    <input type="text" id="gasto-desc" placeholder="Descripción (ej: Almuerzo)" class="input-full">
+                    <button id="btnGuardarGasto" class="btn-primary">Registrar Gasto</button>
+                </div>
+            </section>
+
+            <section id="view-traslados" class="vista hidden">
+                <h2>🔄 Mover Dinero</h2>
+                <div class="card form-card">
+                    <div class="row">
+                        <select id="traslado-origen" class="half">
+                            <option>Desde...</option>
+                        </select>
+                        <span class="arrow">➡️</span>
+                        <select id="traslado-destino" class="half">
+                            <option>Hacia...</option>
+                        </select>
+                    </div>
+                    <input type="number" id="traslado-monto" placeholder="Monto a mover" class="input-full">
+                    <button id="btnGuardarTraslado" class="btn-primary">Realizar Traslado</button>
+                </div>
+            </section>
+
+            <section id="view-bolsillos" class="vista hidden">
+                <h2>💼 Configurar Bolsillos</h2>
+                <div class="card">
+                    <div class="form-group">
+                        <input type="text" id="nombreBolsillo" placeholder="Nombre (Nequi, Efectivo)">
+                        <input type="number" id="saldoInicial" placeholder="Saldo Inicial">
+                        <button id="btnCrearBolsillo">Crear</button>
+                    </div>
+                    <ul id="listaBolsillos" class="lista"></ul>
+                </div>
+            </section>
+
+            <section id="view-categorias" class="vista hidden">
+                <h2>🏷️ Configurar Categorías</h2>
+                <div class="card">
+                    <div class="form-group">
+                        <input type="text" id="nombreCategoria" placeholder="Nombre (Arriendo, Comida)">
+                        <input type="number" id="presupuestoLimite" placeholder="Tope Mensual">
+                        <button id="btnCrearCategoria">Crear</button>
+                    </div>
+                    <ul id="listaCategorias" class="lista"></ul>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script>
+        function navegar(vistaId) {
+            // 1. Ocultar todas las vistas
+            document.querySelectorAll('.vista').forEach(el => el.classList.add('hidden'));
+            // 2. Mostrar la seleccionada
+            document.getElementById('view-' + vistaId).classList.remove('hidden');
+
+            // 3. Actualizar menú activo
+            document.querySelectorAll('.sidebar li').forEach(el => el.classList.remove('active'));
+            document.getElementById('nav-' + vistaId).classList.add('active');
+        }
+    </script>
+    <script>
+        // Registro del Service Worker para PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('App lista para instalar', reg))
+                .catch(err => console.log('Error registro SW', err));
+        }
+    </script>
+</body>
+
+</html>

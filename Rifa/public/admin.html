@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Gran Rifa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="icon" type="image/png" href="rifa.png">
+
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-size: 0.9rem;
+        }
+
+        /* --- KPI CARDS --- */
+        .card-kpi {
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            color: white;
+            height: 100%;
+        }
+
+        .card-body {
+            padding: 12px;
+        }
+
+        .kpi-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .kpi-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        /* Colores */
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+        }
+
+        .bg-gradient-success {
+            background: linear-gradient(135deg, #1cc88a 0%, #13855c 100%);
+        }
+
+        .bg-gradient-warning {
+            background: linear-gradient(135deg, #f6c23e 0%, #dda20a 100%);
+        }
+
+        .bg-gradient-info {
+            background: linear-gradient(135deg, #36b9cc 0%, #258391 100%);
+        }
+
+        /* --- FILTROS --- */
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        /* --- TABLA --- */
+        .table-container {
+            background: white;
+            padding: 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table th {
+            background-color: #f8f9fc;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #888;
+            font-weight: 700;
+            border-bottom: 1px solid #e3e6f0;
+        }
+
+        .table td {
+            vertical-align: middle;
+            padding: 8px 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .col-id {
+            width: 50px;
+            text-align: center;
+        }
+
+        .col-status {
+            width: 100px;
+            text-align: center;
+        }
+
+        .col-actions {
+            width: 90px;
+            text-align: right;
+        }
+
+        .badge-status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+
+        .bg-paid {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .bg-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .btn-action {
+            padding: 2px 6px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+        }
+
+        /* Ajustes Mobile */
+        @media (max-width: 768px) {
+            .filters-grid {
+                grid-template-columns: repeat(2, 1fr);
+                /* Dos columnas en móvil */
+            }
+
+            .filter-status {
+                grid-column: span 2;
+            }
+
+            /* El de estado ocupa ancho completo o puedes dejarlo 1-1 y 1 solo */
+        }
+
+        @media (max-width: 576px) {
+            .kpi-value {
+                font-size: 1.1rem;
+            }
+
+            .col-actions {
+                width: 80px;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-dark py-2 mb-3 shadow-sm">
+        <div class="container d-flex justify-content-between">
+            <span class="navbar-brand mb-0 h1 fs-6">🛠️ Admin Rifa</span>
+            <button onclick="exportTableToCSV('reporte_rifa.csv')" class="btn btn-outline-light btn-sm"
+                style="font-size: 0.8rem;">
+                <i class="bi bi-download"></i> Excel
+            </button>
+        </div>
+    </nav>
+
+    <div class="container pb-5">
+
+        <div class="row g-2 g-md-3 mb-3">
+            <div class="col-6 col-md-3">
+                <div class="card card-kpi bg-gradient-info">
+                    <div class="card-body">
+                        <div class="kpi-title">Vendidas</div>
+                        <h2 class="kpi-value"><span id="totalSold">0</span><small
+                                style="font-size:0.6em; opacity:0.7">/100</small></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card card-kpi bg-gradient-primary">
+                    <div class="card-body">
+                        <div class="kpi-title">Total Venta</div>
+                        <h2 class="kpi-value" id="totalPotential">$0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card card-kpi bg-gradient-success">
+                    <div class="card-body">
+                        <div class="kpi-title">En Caja</div>
+                        <h2 class="kpi-value" id="totalCollected">$0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card card-kpi bg-gradient-warning">
+                    <div class="card-body">
+                        <div class="kpi-title">Por Cobrar</div>
+                        <h2 class="kpi-value" id="totalPending">$0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-2 mt-4">
+            <h6 class="fw-bold text-muted mb-3">Listado y Filtros</h6>
+            <div class="filters-grid">
+                <div class="input-group input-group-sm">
+                    <span class="input-group-text bg-white"><i class="bi bi-person-badge"></i></span>
+                    <select id="sellerFilter" class="form-select">
+                        <option value="all">Vendedor: Todos</option>
+                    </select>
+                </div>
+
+                <div class="input-group input-group-sm">
+                    <span class="input-group-text bg-white"><i class="bi bi-person"></i></span>
+                    <select id="buyerFilter" class="form-select">
+                        <option value="all">Cliente: Todos</option>
+                    </select>
+                </div>
+
+                <div class="input-group input-group-sm filter-status">
+                    <span class="input-group-text bg-white"><i class="bi bi-cash-stack"></i></span>
+                    <select id="paymentFilter" class="form-select">
+                        <option value="all">Pago: Todos</option>
+                        <option value="paid">Pagados</option>
+                        <option value="pending">Pendientes</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="table table-sm table-hover mb-0" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th class="col-id">#</th>
+                            <th>Cliente</th>
+                            <th class="d-none d-sm-table-cell">Vendedor</th>
+                            <th class="col-status">Estado</th>
+                            <th class="col-actions">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td colspan="5" class="text-center py-4 text-muted">Cargando datos...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+        import { getDatabase, ref, update, onValue, remove } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCHVIugSaIorbAba4OaYjcJuvzq0OQQeTo",
+            authDomain: "rifa-jessi.firebaseapp.com",
+            databaseURL: "https://rifa-jessi-default-rtdb.firebaseio.com",
+            projectId: "rifa-jessi",
+            storageBucket: "rifa-jessi.firebasestorage.app",
+            messagingSenderId: "565838574769",
+            appId: "1:565838574769:web:a7a8ccd5f2589a50441e90",
+            measurementId: "G-GS2Y5V6Z1J"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const TICKET_PRICE = 30000;
+
+        const tableBody = document.getElementById('tableBody');
+        const sellerFilter = document.getElementById('sellerFilter');
+        const buyerFilter = document.getElementById('buyerFilter');
+        const paymentFilter = document.getElementById('paymentFilter');
+
+        const lblSold = document.getElementById('totalSold');
+        const lblCollected = document.getElementById('totalCollected');
+        const lblPending = document.getElementById('totalPending');
+        const lblPotential = document.getElementById('totalPotential');
+
+        let allTicketsData = {};
+        const ticketsRef = ref(db, 'tickets');
+
+        onValue(ticketsRef, (snapshot) => {
+            allTicketsData = snapshot.val() || {};
+            populateFilters();
+            applyFilter();
+        });
+
+        function populateFilters() {
+            const currentSeller = sellerFilter.value;
+            const currentBuyer = buyerFilter.value;
+            const sellers = new Set();
+            const buyers = new Set();
+
+            Object.values(allTicketsData).forEach(ticket => {
+                if (ticket.seller && ticket.seller.trim()) sellers.add(ticket.seller.trim());
+                if (ticket.buyer && ticket.buyer.trim()) buyers.add(ticket.buyer.trim());
+            });
+
+            updateSelectOptions(sellerFilter, sellers, "Vendedor: Todos", currentSeller);
+            updateSelectOptions(buyerFilter, buyers, "Cliente: Todos", currentBuyer);
+        }
+
+        function updateSelectOptions(selectElement, itemsSet, defaultText, currentValue) {
+            selectElement.innerHTML = `<option value="all">${defaultText}</option>`;
+            Array.from(itemsSet).sort().forEach(item => {
+                const option = document.createElement('option');
+                option.value = item;
+                option.textContent = item;
+                selectElement.appendChild(option);
+            });
+            if (Array.from(selectElement.options).some(opt => opt.value === currentValue)) {
+                selectElement.value = currentValue;
+            }
+        }
+
+        // Listeners para los 3 filtros
+        sellerFilter.addEventListener('change', applyFilter);
+        buyerFilter.addEventListener('change', applyFilter);
+        paymentFilter.addEventListener('change', applyFilter);
+
+        function applyFilter() {
+            const selectedSeller = sellerFilter.value;
+            const selectedBuyer = buyerFilter.value;
+            const selectedPayment = paymentFilter.value;
+            let filteredData = {};
+
+            Object.keys(allTicketsData).forEach(key => {
+                const ticket = allTicketsData[key];
+
+                const matchSeller = (selectedSeller === 'all' || ticket.seller === selectedSeller);
+                const matchBuyer = (selectedBuyer === 'all' || ticket.buyer === selectedBuyer);
+
+                // Lógica filtro pago
+                let matchPayment = true;
+                if (selectedPayment === 'paid') matchPayment = (ticket.paid === true);
+                if (selectedPayment === 'pending') matchPayment = (ticket.paid === false);
+
+                if (matchSeller && matchBuyer && matchPayment) {
+                    filteredData[key] = ticket;
+                }
+            });
+
+            renderDashboard(filteredData);
+        }
+
+        function renderDashboard(data) {
+            tableBody.innerHTML = '';
+
+            if (!data || Object.keys(data).length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-muted">No se encontraron ventas.</td></tr>';
+                updateKPIs(0, 0, 0);
+                return;
+            }
+
+            let soldCount = 0, collected = 0, pending = 0;
+            const ticketsArray = Object.keys(data).map(key => ({ id: key, ...data[key] })).sort((a, b) => a.id - b.id);
+
+            ticketsArray.forEach(ticket => {
+                soldCount++;
+                ticket.paid ? collected += TICKET_PRICE : pending += TICKET_PRICE;
+
+                const row = document.createElement('tr');
+                const statusBadge = ticket.paid
+                    ? `<span class="badge-status bg-paid"><i class="bi bi-check2"></i> Pago</span>`
+                    : `<span class="badge-status bg-pending"><i class="bi bi-clock"></i> Debe</span>`;
+
+                const btnAction = ticket.paid
+                    ? `<button class="btn btn-outline-secondary btn-action" onclick="togglePayment('${ticket.id}', false)" title="Desmarcar"><i class="bi bi-x"></i></button>`
+                    : `<button class="btn btn-success btn-action" onclick="togglePayment('${ticket.id}', true)" title="Cobrar"><i class="bi bi-cash"></i></button>`;
+
+                const btnDelete = `<button class="btn btn-danger btn-action ms-1" onclick="deleteTicket('${ticket.id}')" title="Eliminar"><i class="bi bi-trash"></i></button>`;
+
+                row.innerHTML = `
+                    <td class="col-id fw-bold text-dark">${ticket.id}</td>
+                    <td class="text-truncate" style="max-width: 150px;"><span class="fw-medium">${ticket.buyer}</span></td>
+                    <td class="d-none d-sm-table-cell text-muted small text-truncate" style="max-width: 120px;">${ticket.seller || '-'}</td>
+                    <td class="col-status">${statusBadge}</td>
+                    <td class="col-actions text-end">${btnAction}${btnDelete}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+
+            updateKPIs(soldCount, collected, pending);
+        }
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(amount);
+        }
+
+        function updateKPIs(sold, collected, pending) {
+            lblSold.textContent = sold;
+            lblCollected.textContent = formatCurrency(collected);
+            lblPending.textContent = formatCurrency(pending);
+            lblPotential.textContent = formatCurrency(sold * TICKET_PRICE);
+        }
+
+        window.togglePayment = (ticketId, newStatus) => update(ref(db, 'tickets/' + ticketId), { paid: newStatus });
+        window.deleteTicket = (ticketId) => { if (confirm("¿Eliminar venta?")) remove(ref(db, 'tickets/' + ticketId)); };
+
+        window.exportTableToCSV = (filename) => {
+            let csv = [];
+            let rows = document.querySelectorAll("table tr");
+            for (let i = 0; i < rows.length; i++) {
+                let row = [], cols = rows[i].querySelectorAll("td, th");
+                for (let j = 0; j < cols.length - 1; j++) {
+                    let text = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, "").trim();
+                    row.push('"' + text + '"');
+                }
+                csv.push(row.join(","));
+            }
+            let link = document.createElement("a");
+            link.href = window.URL.createObjectURL(new Blob([csv.join("\n")], { type: "text/csv" }));
+            link.download = filename;
+            link.click();
+        }
+    </script>
+</body>
+
+</html>

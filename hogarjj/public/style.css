@@ -1,0 +1,312 @@
+/* =========================================
+   1. VARIABLES & RESET (Diseño Minimalista)
+   ========================================= */
+:root {
+    /* Paleta de Colores Limpia */
+    --primary: #2563eb;       /* Azul Intenso */
+    --primary-dark: #1e40af;
+    --bg-app: #f8fafc;        /* Gris muy claro (Casi blanco) */
+    --bg-card: #ffffff;       /* Blanco puro */
+    --text-main: #1e293b;     /* Gris oscuro (No negro puro) */
+    --text-muted: #64748b;    /* Gris medio */
+    --border: #e2e8f0;        
+    
+    /* Semáforo */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+
+    /* Espaciado y Radios */
+    --radius: 12px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif; /* Fuente moderna */
+}
+
+body {
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    height: 100vh;
+    overflow: hidden; /* Evita scroll en el body, solo en el contenido */
+}
+
+/* =========================================
+   2. LAYOUT PRINCIPAL (Escritorio)
+   ========================================= */
+.app-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+/* --- SIDEBAR (Barra Lateral) --- */
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-card);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    flex-shrink: 0; /* No se encoge */
+    z-index: 10;
+}
+
+.brand {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary);
+    padding: 0 25px 25px 25px;
+    letter-spacing: -0.5px;
+}
+
+.sidebar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 15px;
+}
+
+.sidebar li {
+    padding: 12px 15px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.sidebar li:hover {
+    background-color: #f1f5f9;
+    color: var(--text-main);
+}
+
+.sidebar li.active {
+    background-color: #eff6ff; /* Azul muy suave */
+    color: var(--primary);
+}
+
+.sidebar li .material-icons {
+    font-size: 20px;
+}
+
+/* --- CONTENT AREA (Contenido Principal) --- */
+.content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto; /* Scroll interno */
+    position: relative;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+/* Utilidad para ocultar vistas */
+.hidden { display: none !important; }
+
+/* =========================================
+   3. COMPONENTES DE UI (Tarjetas y Forms)
+   ========================================= */
+
+/* Tarjetas Generales */
+.card {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.form-card {
+    max-width: 500px; /* Que no se estiren demasiado los formularios */
+}
+
+/* Grid del Dashboard (Home) */
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsivo automático */
+    gap: 20px;
+}
+
+.dashboard-card {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border-left: 5px solid transparent; /* Se colorea con JS */
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.card-info {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.card-bar {
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.card-progress {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Inputs y Selects */
+input, select {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #f8fafc;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input:focus, select:focus {
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Botones */
+.btn-primary, button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover, button:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Listas (Configuración) */
+.lista {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.lista li {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+.lista li:last-child { border-bottom: none; }
+
+/* Utilidades Flex */
+.row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.half { flex: 1; margin-bottom: 0; }
+.arrow { font-size: 1.2rem; color: var(--text-muted); }
+
+/* =========================================
+   4. DISEÑO RESPONSIVO (Móvil)
+   ========================================= */
+
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column; /* Cambia dirección del layout */
+    }
+
+    /* Transformar Sidebar en Bottom Navigation Bar */
+    .sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        border-right: none;
+        border-top: 1px solid var(--border);
+        padding: 10px 0;
+        justify-content: space-around;
+        background: rgba(255, 255, 255, 0.95); /* Efecto vidrio */
+        backdrop-filter: blur(10px);
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+    }
+
+    .brand { display: none; } /* Ocultar logo en móvil para ahorrar espacio */
+
+    .sidebar ul {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-evenly;
+        padding: 0;
+        gap: 0;
+    }
+
+    .sidebar li {
+        flex-direction: column; /* Icono arriba, texto abajo */
+        padding: 8px;
+        font-size: 0.7rem; /* Texto más pequeño */
+        gap: 4px;
+        background: transparent !important; /* Quitar fondo de activo */
+    }
+    
+    .sidebar li .material-icons {
+        font-size: 24px;
+        margin-bottom: 2px;
+    }
+
+    /* Ajustar contenido para que no quede detrás del menú */
+    .content {
+        padding: 20px;
+        padding-bottom: 90px; /* IMPORTANTE: Espacio para el menú inferior */
+        width: 100%;
+    }
+
+    h2 { font-size: 1.3rem; margin-bottom: 20px; }
+
+    /* Ajustar Grid */
+    .grid-cards {
+        grid-template-columns: 1fr; /* Una sola columna en móvil */
+    }
+
+    .form-card {
+        max-width: 100%; /* Formulario ancho completo */
+    }
+}
