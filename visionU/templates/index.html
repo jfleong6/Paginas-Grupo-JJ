@@ -12,21 +12,27 @@
 
     <header>
         <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Vision U">
-        <label for="btn-excel" class="btn-excel">
+
+        <div class="header-controls" style="display: flex; align-items: center; gap: 10px; margin-left: 20px;">
+            <label class="switch">
+                <input type="checkbox" id="chk-qr">
+                <span class="slider"></span>
+            </label>
+            <span style="color: white; font-size: 0.9rem;">Incluir QR</span>
+        </div>
+
+        <label for="btn-excel" class="btn-excel" style="margin-left: auto;">
             Cargar Excel
         </label>
 
         <input type="file" id="btn-excel" accept=".xlsx,.xls" hidden onchange="buscarExcel(this)">
 
-        <button id="btn-pdf" disabled>
+        <button id="btn-pdf" disabled id="btn-generate">
             Generar PDF
         </button>
     </header>
 
     <section class="layout">
-
-
-
         <main aria-label="Vista previa del documento">
             <div class="visor-pdf">
                 <div id="loading-preview" class="loader-container" style="display: none;">
@@ -37,7 +43,6 @@
                 <embed src="" type="application/pdf" id="pdf-embed" style="display: none; width: 100%; height: 600px;">
             </div>
         </main>
-
     </section>
 
 </body>
