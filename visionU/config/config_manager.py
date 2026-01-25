@@ -7,6 +7,7 @@ class ConfigManager:
         self.path = path
         self.data = self.cargar()
         self.verificar_integridad()
+        print("Vamnos bien")
 
     def cargar(self):
         if os.path.exists(self.path):

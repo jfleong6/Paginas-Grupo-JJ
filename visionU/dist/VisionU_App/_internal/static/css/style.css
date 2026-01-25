@@ -1,0 +1,270 @@
+/* =========================================================
+   VARIABLES GLOBALES – IDENTIDAD VISIÓN U
+   ========================================================= */
+:root {
+    --color-verde: #63B132;
+    --color-verde-hover: #52942a;
+    --color-azul: #1F2237;
+    --color-azul-hover: #2c3150;
+    --color-blanco: #FFFFFF;
+    --color-fondo: #F0F2F5;
+    --color-borde: #D1D5DB;
+    --color-texto: #111827;
+    --color-texto-secundario: #4B5563;
+
+    --header-height: 70px;
+    --radio: 8px;
+    --espaciado: 1rem;
+    --transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================================
+   RESET Y BASE
+   ========================================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    /* Cambiado de 99vh para evitar saltos */
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    overflow: hidden;
+    /* Evita scroll doble */
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+header {
+    height: var(--header-height);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Espacia logo de botones */
+    padding: 0 1.5rem;
+    background-color: var(--color-azul);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+header img {
+    height: 40px;
+    /* Tamaño fijo para consistencia */
+    width: auto;
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+/* Botones genéricos de Header */
+header button,
+.btn-excel {
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radio);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicion);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-excel {
+    background-color: var(--color-blanco);
+    color: var(--color-azul);
+}
+
+.btn-excel:hover {
+    background-color: #e5e7eb;
+}
+
+#btn-pdf {
+    background-color: var(--color-verde);
+    color: var(--color-blanco);
+}
+
+#btn-pdf:hover:not(:disabled) {
+    background-color: var(--color-verde-hover);
+    transform: translateY(-1px);
+}
+
+#btn-pdf:disabled {
+    background-color: var(--color-texto-secundario);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* =========================================================
+   LAYOUT Y VISOR
+   ========================================================= */
+.layout {
+
+    /* Ocupa el resto de la pantalla */
+    display: flex;
+    position: relative;
+    height: 100vh;
+}
+
+main {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.visor-pdf {
+    flex: 1;
+    position: relative;
+    background-color: #525659;
+    /* Color estándar de visores PDF */
+    margin: 10px;
+    border-radius: var(--radio);
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.visor-pdf embed {
+    width: 100%;
+    height: 100%;
+}
+
+/* =========================================================
+   LOADERS Y SPINNERS
+   ========================================================= */
+.loader-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    backdrop-filter: blur(2px);
+}
+
+/* Spinner de carga de vista previa */
+.spinner-blue {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--color-verde);
+    border-radius: 50%;
+    animation: spin 1s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+    margin-bottom: 1rem;
+}
+
+/* Spinner pequeño dentro del botón */
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 0.8s linear infinite;
+    margin-left: 8px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================================
+   ASIDE (Panel Lateral de Configuración) 
+   ========================================================= */
+aside.accordion {
+    width: 300px;
+    /* Ancho fijo recomendado */
+    background: var(--color-blanco);
+    border-right: 1px solid var(--color-borde);
+    padding: var(--espaciado);
+    display: none;
+    /* Se activa cuando sea necesario */
+}
+
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 20px;
+}
+
+/* Estilos del Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+    /* Azul al activar */
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+/* Input de texto para la columna */
+#input-col-qr {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 120px;
+    transition: all 0.3s ease;
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+}

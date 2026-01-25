@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision U</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/icono.png') }}">
+</head>
+
+<body>
+
+    <header>
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Vision U">
+
+        <div class="header-controls" style="display: flex; align-items: center; gap: 10px; margin-left: 20px;">
+            <label class="switch">
+                <input type="checkbox" id="chk-qr">
+                <span class="slider"></span>
+            </label>
+            <span style="color: white; font-size: 0.9rem;">Incluir QR</span>
+        </div>
+
+        <label for="btn-excel" class="btn-excel" style="margin-left: auto;">
+            Cargar Excel
+        </label>
+
+        <input type="file" id="btn-excel" accept=".xlsx,.xls" hidden onchange="buscarExcel(this)">
+
+        <button id="btn-pdf" disabled id="btn-generate">
+            Generar PDF
+        </button>
+    </header>
+
+    <section class="layout">
+        <main aria-label="Vista previa del documento">
+            <div class="visor-pdf">
+                <div id="loading-preview" class="loader-container" style="display: none;">
+                    <div class="spinner-blue"></div>
+                    <p>Procesando datos...</p>
+                </div>
+
+                <embed src="" type="application/pdf" id="pdf-embed" style="display: none; width: 100%;">
+            </div>
+        </main>
+    </section>
+
+</body>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</html>

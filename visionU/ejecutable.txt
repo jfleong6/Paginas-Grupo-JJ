@@ -1,0 +1,1 @@
+pyinstaller --noconfirm --onedir --add-data "templates;templates" --add-data "static;static" --icon "static/img/icono.ico" --version-file "file_version_info.txt" --name "VisionU_App" app.py
