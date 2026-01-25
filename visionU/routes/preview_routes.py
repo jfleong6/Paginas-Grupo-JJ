@@ -34,14 +34,11 @@ def generar_pdf_base(df, incluir_plantilla=False, es_preview=False, generar_qr=F
     plantilla_path = "Hojas de respuestas - sesión2.pdf"
     writer = PdfWriter()
     
-    # Leemos la configuración del QR una sola vez
-    # Asegúrate que en tu JSON config tengas la clave "columna_datos"
     qr_conf = config.get("qr", {}) 
-
     filas = df.head(1).iterrows() if es_preview else df.iterrows()
 
     for _, row in filas:
-  
+        # 1. Leer la plantilla en cada iteración para tener una página limpia
         reader_plantilla = PdfReader(plantilla_path)
         pagina_base = reader_plantilla.pages[0]
         
@@ -60,41 +57,46 @@ def generar_pdf_base(df, incluir_plantilla=False, es_preview=False, generar_qr=F
         
         # --- B. QR (MULTIDATO) ---
         if generar_qr and qr_conf:
-
             cols_config = [
                 str(v).strip()
                 for v in row.values
                 if pd.notna(v) and str(v).strip() != ""
             ]
-
             if cols_config:
                 dato_final = ",".join(cols_config)
-
                 imagen_qr = crear_imagen_qr(dato_final)
-
                 if imagen_qr:
                     x = qr_conf.get("x", 150) * mm
                     y = qr_conf.get("y", 250) * mm
                     size = qr_conf.get("size", 30) * mm
-
                     c.drawImage(imagen_qr, x, y, width=size, height=size)
 
-                c.save()
-                packet.seek(0)
-                overlay_page = PdfReader(packet).pages[0]
+        # --- C. FINALIZACIÓN DE LA PÁGINA (FUERA DEL IF QR) ---
+        c.save()  # Guardamos el canvas siempre
+        packet.seek(0)
+        
+        # Creamos la capa de texto/QR
+        overlay_reader = PdfReader(packet)
+        if len(overlay_reader.pages) > 0:
+            overlay_page = overlay_reader.pages[0]
 
-                if incluir_plantilla:
-                    pagina_base.merge_page(overlay_page)
-                    writer.add_page(pagina_base)
-                else:
-                    overlay_page.mediabox = pagina_base.mediabox
-                    writer.add_page(overlay_page)
+            if incluir_plantilla:
+                pagina_base.merge_page(overlay_page)
+                writer.add_page(pagina_base)
+            else:
+                overlay_page.mediabox = pagina_base.mediabox
+                writer.add_page(overlay_page)
     
+    # --- D. SALIDA ---
     out = io.BytesIO()
     writer.write(out)
     out.seek(0)
+    
+    # Verificación de seguridad: si no hay páginas, el visor fallará
+    if len(writer.pages) == 0:
+        print("Error: El PDF no tiene páginas.")
+        
     return out
-
 # --- RUTAS ---
 
 @preview_bp.route("/preview", methods=["POST"])
