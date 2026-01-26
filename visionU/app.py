@@ -11,8 +11,16 @@ import base64
 from config.config_manager import ConfigManager
 from routes.preview_routes import preview_bp
 
+# Función para obtener la ruta correcta (sea .py o .exe)
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
-app = Flask(__name__)
+# Al crear la app, usa estas rutas
+app = Flask(__name__, 
+            template_folder=resource_path("templates"),
+            static_folder=resource_path("static"))
 app.config['UPLOAD_FOLDER'] = 'temp'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB
 app.register_blueprint(preview_bp)

@@ -1,0 +1,22 @@
+CONTRATO DE LICENCIA DE USUARIO FINAL (EULA) - VISIONU
+
+PROPIEDAD: Este software es propiedad exclusiva de Grupo JJ. 
+Queda prohibida su reproducción, venta o distribución sin autorización expresa.
+
+USO: El usuario tiene derecho a utilizar la aplicación para fines de 
+procesamiento de datos y verificación de documentos.
+
+LIMITACIÓN DE RESPONSABILIDAD: Grupo JJ no se hace responsable por 
+errores derivados de una mala configuración en el archivo 'config_campos.json' 
+o por el uso de plantillas PDF incompatibles.
+
+1. PROPIEDAD: VisionU es un software desarrollado por Grupo JJ. Todos los derechos reservados.
+2. USO: Se concede permiso para utilizar esta aplicación en la gestión y verificación de formularios PDF mediante datos de Excel.
+3. MODIFICACIONES: El usuario está autorizado a modificar el archivo 'config_campos.json' para calibrar las coordenadas de impresión según sus necesidades.
+4. RESPONSABILIDAD: Grupo JJ no se hace responsable por errores en la generación de documentos derivados de configuraciones incorrectas en el archivo de campos o el uso de plantillas PDF no soportadas.
+
+Para soporte técnico, contacte a: https://grupo-jj.web.app/
+
+CONTACTO:
+Para soporte técnico o licencias adicionales, visite: 
+https://grupo-jj.web.app/
