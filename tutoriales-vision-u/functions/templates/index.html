@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision-U | Grupo JJ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="bg-gray-50 text-gray-900 font-sans transition-colors duration-300">
+
+    <header
+        class="h-16 border-b border-gray-200 bg-white dark:bg-[#0a0a0a] dark:border-gray-800 px-4 md:px-8 flex justify-between items-center sticky top-0 z-50 transition-colors duration-300">
+
+        <div class="flex items-center gap-3">
+            <button id="menu-toggle"
+                class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300 focus:outline-none">
+                <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+
+            <img src="/static/img/icono.png" alt="Logo" class="h-8 md:h-10">
+            <span class="h-6 w-px bg-gray-300 dark:bg-gray-700 hidden sm:block"></span>
+            <p class="text-[10px] md:text-xs uppercase tracking-[0.2em] text-gray-500 font-bold">Visión U</p>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <span class="text-[10px] font-bold text-gray-400 uppercase hidden sm:block">Modo</span>
+            <button id="theme-toggle"
+                class="relative inline-flex items-center h-6 rounded-full w-11 transition-colors focus:outline-none bg-gray-200 dark:bg-indigo-600">
+                <span id="theme-toggle-dot"
+                    class="inline-block w-4 h-4 transform bg-white rounded-full transition-transform translate-x-1 dark:translate-x-6"></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex flex-col md:flex-row h-screen md:h-[calc(100vh-64px)] overflow-hidden">
+
+        <aside
+            class="w-full md:w-80 lg:w-96 border-r border-gray-200 dark:border-gray-800 flex flex-col bg-white dark:bg-[#0a0a0a] transition-colors">
+
+
+            <div class="p-4 space-y-4">
+                <div id="installer-container" class="hidden">
+                    <a id="installer-link" href="#" target="_blank"
+                        class="flex items-center justify-between bg-indigo-600 hover:bg-indigo-700 p-3 rounded-xl shadow-md transition-all group">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <div class="bg-white/20 p-2 rounded-lg text-white">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                </svg>
+                            </div>
+                            <div class="truncate">
+                                <p class="text-[9px] font-bold text-indigo-100 uppercase leading-none">Setup Tool</p>
+                                <p id="installer-name" class="text-xs font-bold text-white truncate">Vision-U.rar</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] bg-white/20 text-white px-2 py-1 rounded font-black">RAR</span>
+                    </a>
+                </div>
+            </div>
+
+            <div id="playlist" class="flex-1 overflow-y-auto p-4 pt-0 space-y-2 custom-scrollbar">
+                <div id="loading-spinner" class="flex flex-col items-center justify-center py-12 text-gray-400">
+                    <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600 mb-4"></div>
+                    <p class="text-[10px] uppercase tracking-widest font-bold">Sincronizando academia...</p>
+                </div>
+            </div>
+        </aside>
+
+        <section class="flex-1 bg-gray-100 dark:bg-black flex flex-col overflow-y-auto transition-colors">
+            <div class="p-4 md:p-8 max-w-5xl mx-auto w-full">
+
+                <div id="video-wrapper"
+                    class="relative w-full aspect-video rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#0d0d0d]">
+                    <div id="placeholder"
+                        class="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+                        <img src="/static/img/icono.png" class="w-20 opacity-10 mb-6">
+                        <h2 class="text-lg font-bold text-gray-400 dark:text-gray-600 uppercase tracking-widest">Panel
+                            de Capacitación</h2>
+                    </div>
+                    <iframe id="main-player" class="absolute inset-0 w-full h-full hidden" src="" frameborder="0"
+                        allowfullscreen></iframe>
+                </div>
+
+                <div id="video-info" class="mt-8 opacity-0 translate-y-4 transition-all duration-700">
+                    <h2 id="current-title"
+                        class="text-2xl md:text-4xl font-black text-gray-900 dark:text-white uppercase break-words">
+                    </h2>
+                    <div class="h-1 w-20 bg-indigo-600 mt-4 rounded-full"></div>
+                    <p
+                        class="text-gray-500 dark:text-gray-400 mt-6 text-sm leading-relaxed border-l-4 border-indigo-600/20 pl-4">
+                        Recurso técnico oficial de <strong>Grupo JJ</strong> para aliados estratégicos de Vision-U.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer
+        class="bg-white dark:bg-[#0a0a0a] border-t border-gray-200 dark:border-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+
+                <div class="text-center md:text-left">
+                    <img src="/static/img/icono.png" alt="Logo" class="h-10 mx-auto md:mx-0 mb-3 opacity-80">
+                    <p class="text-[10px] uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold">
+                        Tecnología y Capacitación</p>
+                </div>
+
+                <div class="text-center">
+                    <p class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Diseñado con <span class="text-red-500 animate-pulse">♥</span> por Grupo JJ
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1 uppercase tracking-tighter">Programador Ing. Fredy</p>
+                    <p class="text-[10px] text-gray-400 mt-4 italic">&copy; 2026 Grupo JJ. Todos los derechos
+                        reservados.</p>
+                </div>
+
+                <div class="text-center md:text-right text-[11px] space-y-2 text-gray-600 dark:text-gray-400">
+                    <div>
+                        <p class="font-bold text-gray-900 dark:text-white mb-1">CONTACTO TÉCNICO</p>
+                        <p>Ing. Fredy: 3175414049 | jfleong6@gmail.com</p>
+                    </div>
+                    <div>
+                        <p>Ing. Jessica Cortes: 3223500455 | jessitc6@gmail.com</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

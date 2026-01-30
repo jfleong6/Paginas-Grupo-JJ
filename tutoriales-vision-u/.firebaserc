@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "gestioncontrol-grupojj"
+  },
+  "targets": {
+    "gestioncontrol-grupojj": {
+      "hosting": {
+        "tutoria": [
+          "tutoria-vision-u"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
