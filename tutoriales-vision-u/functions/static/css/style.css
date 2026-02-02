@@ -1,0 +1,83 @@
+/* --- ESTADOS GLOBALES --- */
+
+/* MODO CLARO (Default) */
+body {
+    background-color: #f9fafb; /* gray-50 */
+    color: #111827; /* gray-900 */
+    transition: all 0.3s ease;
+}
+
+aside {
+    background-color: #ffffff;
+    border-color: #e5e7eb; /* gray-200 */
+}
+
+section {
+    background-color: #f3f4f6; /* gray-100 */
+}
+
+#video-wrapper {
+    background-color: #ffffff;
+    border-color: #e5e7eb;
+}
+
+/* MODO OSCURO (Cuando el body tiene .dark) */
+body.dark {
+    background-color: #050505;
+    color: #e5e7eb;
+}
+
+body.dark aside {
+    background-color: #0a0a0a;
+    border-color: #1f2937; /* gray-800 */
+}
+
+body.dark section {
+    background-color: #000000;
+}
+
+body.dark #video-wrapper {
+    background-color: #0d0d0d;
+    border-color: #1f2937;
+}
+
+body.dark header {
+    background-color: #0a0a0a;
+    border-color: #1f2937;
+}
+
+/* Scrollbar */
+.custom-scrollbar::-webkit-scrollbar { width: 5px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+body.dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #374151; }
+
+/* Animaciones */
+.fade-in { animation: slideUp 0.4s ease-out forwards; }
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Ajuste para que el contenido principal deje espacio al footer */
+main {
+    height: calc(100vh - 64px - 150px); /* Restamos header (64px) y el alto estimado del footer */
+}
+
+@media (max-width: 768px) {
+    main {
+        height: auto; /* En móviles el contenido fluye naturalmente */
+    }
+    aside {
+        position: fixed;
+        top: 64px; /* Altura del header */
+        left: -100%; /* Escondido a la izquierda */
+        width: 80%;
+        max-width: 300px;
+        height: calc(100vh - 64px);
+        z-index: 45; /* Por encima de todo */
+        transition: left 0.3s ease-in-out;
+    }
+
+    aside.menu-open {
+        left: 0; /* Mostrar */
+    }
+}

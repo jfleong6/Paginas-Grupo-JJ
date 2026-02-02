@@ -12,35 +12,27 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
         rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Delius&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="static/img/logo.png" type="image/png">
 </head>
 
 <body>
     <!-- HERO SECTION -->
     <section class="hero" id="inicio">
+        <video autoplay muted loop playsinline class="hero-video desktop">
+            <source src="static/video/video1.mp4" type="video/mp4">
+        </video>
+        <video autoplay muted loop playsinline class="hero-video mobile">
+            <source src="static/video/video1.mp4" type="video/mp4">
+        </video>
         <div class="hero-blur">
             <div class="hero-contenido">
                 <p>LEGO TECH</p>
-                <h1 id="hero-titulo">Capturamos momentos <br>que cuentan historias</h1>
-                <p id="hero-descripcion">
-                    Especialistas en fotografía y producción audiovisual para eventos sociales y corporativos.
-                </p>
+                <h1 id="hero-titulo">"Soy tu mejor fotografía"</h1>
                 <a href="#contacto" class="btn">Contactar ahora</a>
             </div>
         </div>
-
     </section>
-
-
-    <nav class="navbar">
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#nosotros">Nosotros</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#galeria">Galería</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-    </nav>
 
     <!-- NOSOTROS SECTION -->
     <section class="seccion" id="nosotros">
@@ -66,21 +58,17 @@
         </div>
     </section>
 
-
     <!-- SERVICIOS SECTION -->
     <section class="seccion servicios" id="servicios">
         <div class="contenedor">
-
             <header class="seccion-header">
                 <h2>Servicios</h2>
                 <p>Soluciones visuales profesionales para cada tipo de evento</p>
             </header>
 
             <div class="servicios-grid">
-
                 <article class="servicio-card">
                     <div class="servicio-inner">
-
                         <!-- FRENTE -->
                         <div class="servicio-front">
                             <div class="servicio-icono">
@@ -91,10 +79,9 @@
                                 Cobertura fotográfica profesional para eventos sociales y corporativos.
                             </p>
                         </div>
-
                         <!-- REVERSO -->
                         <div class="servicio-back">
-                            <img src="static/img/galeria6.jpg" alt="Fotografía de eventos">
+                            <img src="static/img/galeria6.jpg" alt="Fotografía de eventos" class="vertical-img">
                             <div class="servicio-back-info">
                                 <h3>Fotografía de eventos</h3>
                                 <p>
@@ -103,13 +90,11 @@
                                 </p>
                             </div>
                         </div>
-
                     </div>
                 </article>
 
                 <article class="servicio-card">
                     <div class="servicio-inner">
-
                         <div class="servicio-front">
                             <div class="servicio-icono">
                                 <i class="fas fa-video"></i>
@@ -119,9 +104,10 @@
                                 Grabación y edición de video profesional en alta calidad.
                             </p>
                         </div>
-
                         <div class="servicio-back">
-                            <img src="static/img/galeria6.jpg" alt="Producción audiovisual">
+                            <video autoplay muted loop playsinline class="hero-video vertical-img">
+                                <source src="static/video/video1.mp4" type="video/mp4">
+                            </video>
                             <div class="servicio-back-info">
                                 <h3>Producción audiovisual</h3>
                                 <p>
@@ -130,13 +116,11 @@
                                 </p>
                             </div>
                         </div>
-
                     </div>
                 </article>
 
                 <article class="servicio-card">
                     <div class="servicio-inner">
-
                         <div class="servicio-front">
                             <div class="servicio-icono">
                                 <i class="fas fa-user-tie"></i>
@@ -146,9 +130,8 @@
                                 Sesiones dirigidas según concepto y marca personal.
                             </p>
                         </div>
-
                         <div class="servicio-back">
-                            <img src="static/img/galeria6.jpg" alt="Sesiones personalizadas">
+                            <img src="static/img/galeria2.jpg" alt="Sesiones personalizadas" class="vertical-img">
                             <div class="servicio-back-info">
                                 <h3>Sesiones personalizadas</h3>
                                 <p>
@@ -157,13 +140,11 @@
                                 </p>
                             </div>
                         </div>
-
                     </div>
                 </article>
 
                 <article class="servicio-card">
                     <div class="servicio-inner">
-
                         <div class="servicio-front">
                             <div class="servicio-icono">
                                 <i class="fas fa-magic"></i>
@@ -173,9 +154,8 @@
                                 Retoque fotográfico y edición audiovisual avanzada.
                             </p>
                         </div>
-
                         <div class="servicio-back">
-                            <img src="static/img/galeria6.jpg" alt="Edición y postproducción">
+                            <img src="static/img/galeria1.jpg" alt="Edición y postproducción" class="vertical-img">
                             <div class="servicio-back-info">
                                 <h3>Edición y postproducción</h3>
                                 <p>
@@ -184,95 +164,120 @@
                                 </p>
                             </div>
                         </div>
-
                     </div>
                 </article>
-
-
             </div>
-
         </div>
     </section>
-
 
     <!-- SERVICIOS GALERIA -->
     <section class="seccion galeria" id="galeria">
         <div class="contenedor">
-
             <header class="seccion-header">
                 <h2>Galería</h2>
                 <p>Una muestra de nuestro trabajo y estilo visual</p>
             </header>
 
             <div class="galeria-grid">
-
+                <!-- Imagen 1 -->
                 <figure class="galeria-item">
-                    <img src="static/img/galeria1.jpg" alt="Evento social">
+                    <img src="static/img/galeria1.jpg" alt="Evento social" class="vertical-img">
                     <figcaption>
                         <h3>Eventos sociales</h3>
                         <span>Fotografía</span>
                     </figcaption>
                 </figure>
 
+                <!-- Imagen 2 -->
                 <figure class="galeria-item">
-                    <img src="static/img/galeria2.jpg" alt="Evento corporativo">
+                    <img src="static/img/galeria2.jpg" alt="Evento corporativo" class="vertical-img">
                     <figcaption>
                         <h3>Eventos corporativos</h3>
                         <span>Producción audiovisual</span>
                     </figcaption>
                 </figure>
 
+                <!-- Imagen 3 -->
                 <figure class="galeria-item">
-                    <img src="static/img/galeria3.jpg" alt="Sesión profesional">
+                    <img src="static/img/galeria3.jpg" alt="Sesión profesional" class="vertical-img">
                     <figcaption>
                         <h3>Sesiones creativas</h3>
                         <span>Dirección artística</span>
                     </figcaption>
                 </figure>
 
-                <figure class="galeria-item">
-                    <img src="static/img/galeria4.jpg" alt="Producción audiovisual">
+                <!-- Video 1 -->
+                <figure class="galeria-item video-item">
+                    <video autoplay muted loop playsinline class="galeria-video vertical-img">
+                        <source src="static/video/video1.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
                     <figcaption>
-                        <h3>Video profesional</h3>
-                        <span>Postproducción</span>
+                        <h3>Producción en acción</h3>
+                        <span>Video profesional</span>
                     </figcaption>
                 </figure>
 
-                <figure class="galeria-item">
-                    <img src="static/img/galeria5.jpg" alt="Fotografía de marca">
+                <!-- Video 2 (ejemplo adicional) -->
+                <figure class="galeria-item video-item">
+                    <video autoplay muted loop playsinline class="galeria-video vertical-img">
+                        <source src="static/video/video2.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
                     <figcaption>
-                        <h3>Marca y contenido</h3>
-                        <span>Branding visual</span>
+                        <h3>Eventos en vivo</h3>
+                        <span>Cobertura audiovisual</span>
                     </figcaption>
                 </figure>
 
-                <figure class="galeria-item">
-                    <img src="static/img/galeria6.jpg" alt="Cobertura de evento">
+                <!-- Video 3 (ejemplo adicional) -->
+                <figure class="galeria-item video-item">
+                    <video autoplay muted loop playsinline class="galeria-video vertical-img">
+                        <source src="static/video/video3.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
                     <figcaption>
-                        <h3>Cobertura completa</h3>
-                        <span>Eventos en vivo</span>
+                        <h3>Eventos en vivo</h3>
+                        <span>Cobertura audiovisual</span>
+                    </figcaption>
+                </figure>
+                <!-- Video 4 (ejemplo adicional) -->
+                <figure class="galeria-item video-item">
+                    <video autoplay muted loop playsinline class="galeria-video vertical-img">
+                        <source src="static/video/video4.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                    <figcaption>
+                        <h3>Eventos en vivo</h3>
+                        <span>Cobertura audiovisual</span>
                     </figcaption>
                 </figure>
 
+                <!-- Video 5 (ejemplo adicional) -->
+                <figure class="galeria-item video-item">
+                    <video autoplay muted loop playsinline class="galeria-video vertical-img">
+                        <source src="static/video/video5.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                    <figcaption>
+                        <h3>Eventos en vivo</h3>
+                        <span>Cobertura audiovisual</span>
+                    </figcaption>
+                </figure>
             </div>
-
         </div>
     </section>
-
 
     <!-- CONTACTO SECTION -->
     <section class="seccion contacto" id="contacto">
         <div class="contenedor">
-
             <header class="seccion-header">
                 <h2>Contacto</h2>
                 <p>Cuéntanos sobre tu evento y nos comunicaremos contigo</p>
             </header>
 
             <form class="form-contacto" method="post" action="#">
-
                 <div class="form-grid">
-
                     <div class="form-grupo">
                         <label for="nombre">Nombre completo</label>
                         <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
@@ -298,28 +303,19 @@
                         <textarea id="mensaje" name="mensaje" rows="5"
                             placeholder="Cuéntanos los detalles de tu evento..." required></textarea>
                     </div>
-
                 </div>
 
                 <div class="form-acciones">
                     <button type="submit" class="btn">Enviar mensaje</button>
                 </div>
-
             </form>
-
         </div>
     </section>
-
-
 
     <!-- FOOTER -->
     <footer class="footer">
         <div class="contenedor">
-
-            <!-- CONTENIDO PRINCIPAL DEL FOOTER -->
             <div class="footer-grid">
-
-                <!-- COLUMNA 1: MENSAJE / MARCA -->
                 <div class="footer-col">
                     <h3 class="footer-titulo">Lego Tech</h3>
                     <p class="footer-texto">
@@ -328,56 +324,119 @@
                     </p>
                 </div>
 
-                <!-- COLUMNA 2: REDES SOCIALES -->
                 <div class="footer-col">
                     <h3 class="footer-titulo">Síguenos</h3>
                     <div class="footer-redes">
-                        <a href="#" aria-label="Instagram">
+                        <a href="https://www.instagram.com/lego_tech10/" aria-label="Instagram" target="_blank">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" aria-label="YouTube">
-                            <i class="fab fa-youtube"></i>
+                        <a href="https://www.tiktok.com/@soy_le_go?is_from_webapp=1&sender_device=pc"
+                            aria-label="TikTok" target="_blank">
+                            <i class="fab fa-tiktok"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- COLUMNA 3: CONTACTO -->
                 <div class="footer-col">
                     <h3 class="footer-titulo">Contacto</h3>
                     <ul class="footer-contacto">
-                        <li><i class="fas fa-envelope"></i> legotech@gmail.com</li>
-                        <li><i class="fas fa-phone"></i> +57 300 000 0000</li>
+                        <li><i class="fas fa-envelope"></i> lego1031@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +57 314 403 7326</li>
                         <li><i class="fas fa-map-marker-alt"></i> Colombia</li>
                     </ul>
                 </div>
-
             </div>
 
-            <!-- DERECHOS -->
             <div class="footer-derechos">
                 <p>Diseñado con <span class="corazon">♥</span> por Grupo JJ · Programador Ing. Fredy</p>
                 <p>&copy; 2026 Grupo JJ. Todos los derechos reservados.</p>
             </div>
-
         </div>
     </footer>
 
+    <!-- MENÚ PRINCIPAL (Desktop) -->
+    <nav class="navbar-desktop" id="navbarDesktop">
+        <div class="contenedor nav-desktop-contenedor">
+            <a href="#inicio" class="nav-logo">
+                <img src="static/img/logo.png" alt="Lego Tech">
+            </a>
 
-    <!-- BOTÓN FLOTANTE DE REDES SOCIALES -->
-    <div class="boton-redes-flotante">
-        <a class="red-social-btn instagram" id="red-social-btn" target="_blank">
+            <ul class="nav-links">
+                <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="#nosotros"><i class="fas fa-users"></i> Nosotros</a></li>
+                <li><a href="#servicios"><i class="fas fa-camera"></i> Servicios</a></li>
+                <li><a href="#galeria"><i class="fas fa-images"></i> Galería</a></li>
+                <li><a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
+            </ul>
+
+            <div class="nav-social">
+                <a href="https://www.instagram.com/lego_tech10/" class="social-btn instagram-btn" aria-label="Instagram"
+                    target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/573144037326" class="social-btn whatsapp-btn" aria-label="WhatsApp"
+                    target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MENÚ INFERIOR MOBILE -->
+    <div class="menu-mobile" id="menuMobile">
+        <!-- Instagram a la izquierda -->
+        <a href="https://www.instagram.com/lego_tech10/" class="social-btn instagram-btn" aria-label="Instagram"
+            target="_blank">
             <i class="fab fa-instagram"></i>
         </a>
 
-        <!-- BOTÓN FLOTANTE DE WHATSAPP -->
-        <a id="whatsapp-btn" class="red-social-btn whatsapp" target="_blank">
+        <!-- Logo/Llamada a menú en el centro -->
+        <div class="menu-centro" id="menuMobileTrigger">
+            <div class="logo-menu">
+                <img src="static/img/logo.png" alt="Lego Tech">
+            </div>
+        </div>
+
+        <!-- WhatsApp a la derecha -->
+        <a href="https://wa.me/573144037326" class="social-btn whatsapp-btn" aria-label="WhatsApp" target="_blank">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
 
+    <!-- MENÚ DESPLEGABLE MOBILE -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <nav class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo">
+                <img src="static/img/logo.png" alt="Lego Tech">
+            </div>
+            <button class="mobile-menu-cerrar" id="mobileMenuCerrar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <ul class="mobile-menu-links">
+            <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="#nosotros"><i class="fas fa-users"></i> Nosotros</a></li>
+            <li><a href="#servicios"><i class="fas fa-camera"></i> Servicios</a></li>
+            <li><a href="#galeria"><i class="fas fa-images"></i> Galería</a></li>
+            <li><a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
+        </ul>
+
+        <div class="mobile-menu-social">
+            <a href="https://www.instagram.com/lego_tech10/" class="social-btn instagram-btn" aria-label="Instagram"
+                target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/573144037326" class="social-btn whatsapp-btn" aria-label="WhatsApp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- JavaScript -->
+    <script src="static/js/menu.js"></script>
+    <script type="module" src="static/js/contacto.js"></script>
 </body>
 
 </html>
