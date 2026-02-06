@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magia Fura y Tena | Paraíso Ancestral</title>
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/galeria.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="img/logo.svg" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Loader inicial -->
+    <div id="loader">
+        <img src="img/logo.svg" alt="Logo Entrada" class="logo-entrada">
+    </div>
+
+    <!-- Menú fijo -->
+    <nav class="nav-menu">
+        <div class="nav-contenedor">
+            <a href="#inicio" class="nav-logo">
+                <img src="img/logo.svg" alt="Logo Magia Fura y Tena">
+                <span>Magia Fura y Tena</span>
+            </a>
+
+            <div class="nav-enlaces">
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#galeria">Galeria</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+
+            <button class="nav-toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sección HERO/INICIO -->
+    <section id="inicio" class="hero">
+        <video autoplay muted loop playsinline id="hero-video">
+            <source src="videos/Mi video.mp4" type="video/mp4">
+            Tu navegador no soporta videos HTML5.
+        </video>
+        <video autoplay muted loop playsinline id="hero-video-movile">
+            <source src="videos/Mi video1.mp4" type="video/mp4">
+            Tu navegador no soporta videos HTML5.
+        </video>
+        <div class="overlay"></div>
+
+        <div class="hero-content">
+            <img src="img/logo.svg" alt="logo Magia Fura y Tena" class="hero-logo">
+            <h1>Magia Fura y Tena</h1>
+            <p class="eslogan">"Maravilla natural, tesoro ancestral de mitología y leyenda"</p>
+
+            <a href="#servicios" class="hero-btn">
+                <i class="fas fa-chevron-down"></i>
+                Descubre nuestros servicios
+            </a>
+        </div>
+    </section>
+
+    <!-- Sección SERVICIOS -->
+    <section id="servicios" class="seccion servicios">
+        <div class="contenedor">
+            <h2 class="seccion-titulo">Nuestros Servicios</h2>
+            <p class="seccion-subtitulo">Descubre las experiencias únicas que tenemos para ti</p>
+
+            <!-- Carrusel de servicios móvil -->
+            <div class="servicios-mobile">
+                <div class="servicios-carrusel" id="servicios-carrusel" style="display: none;">
+                    <!-- Servicios se generan dinámicamente -->
+                </div>
+                <div class="carrusel-controles">
+                    <button class="carrusel-btn prev" id="carrusel-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="carrusel-indicadores" id="carrusel-indicadores">
+                        <!-- Indicadores se generan dinámicamente -->
+                    </div>
+                    <button class="carrusel-btn next" id="carrusel-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid de servicios desktop -->
+            <div class="servicios-grid" id="servicios-grid">
+                <!-- Servicios se generan dinámicamente -->
+            </div>
+
+            <!-- Vista detallada del servicio -->
+            <div class="servicio-detalle" id="servicio-detalle">
+                <div class="detalle-contenido">
+                    <div class="detalle-header">
+                        <div class="detalle-icono">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <h3 class="detalle-titulo">Panorámicas a Fura y Tena</h3>
+                    </div>
+
+                    <div class="detalle-body">
+                        <p class="detalle-descripcion">
+                            Disfruta de vistas espectaculares a los majestuosos cerros Fura y Tena,
+                            dos monumentos naturales que dominan el paisaje local. Ofrecemos
+                            miradores estratégicamente ubicados para capturar las mejores
+                            fotografías y experiencias visuales.
+                        </p>
+
+                        <div class="detalle-caracteristicas">
+                            <div class="caracteristica">
+                                <i class="fas fa-binoculars"></i>
+                                <span>Miradores estratégicos</span>
+                            </div>
+                            <div class="caracteristica">
+                                <i class="fas fa-camera"></i>
+                                <span>Fotografía panorámica</span>
+                            </div>
+                            <div class="caracteristica">
+                                <i class="fas fa-user-friends"></i>
+                                <span>Acompañamiento guiado</span>
+                            </div>
+                            <div class="caracteristica">
+                                <i class="fas fa-clock"></i>
+                                <span>Horarios flexibles</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección NOSOTROS -->
+    <section id="nosotros" class="seccion nosotros">
+        <div class="contenedor">
+            <h2 class="seccion-titulo">Nosotros</h2>
+
+            <div class="nosotros-contenido">
+                <!-- Video presentación -->
+                <div class="nosotros-video">
+                    <video controls playsinline poster="img/logo.svg">
+                        <source src="videos/portada.mp4" type="video/mp4">
+                        Tu navegador no soporta videos HTML5.
+                    </video>
+
+                    <!-- Misión y Visión -->
+                    <div class="mision-vision">
+                        <div class="tarjeta">
+                            <div class="tarjeta-icono">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3>Misión</h3>
+                            <p>Ofrecer satisfactoriamente a nuestros turistas y visitantes, la mejor panorámica de los
+                                majestuosos cerros de Fura y Tena, su mitología y leyenda; hospedaje rural en Ranchería
+                                los Topitos, museo campesino, galería temática a la esmeralda, caminatas ecológicas,
+                                Peña del Corazón Encantado, Cascada el Baño de los Abuelos, Charco la Moya; gastronomía
+                                típica y prácticas en sostenibilidad ambiental.</p>
+                        </div>
+
+                        <div class="tarjeta">
+                            <div class="tarjeta-icono">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h3>Visión</h3>
+                            <p>Para el 2035 seremos un referente por excelencia para Boyacá, Colombia y el Mundo como un
+                                destino ecoturístico, con prácticas sustentables y sostenibles con el medio ambiente.
+                                Espacio innovador para vivir y gozar a plenitud de la naturaleza, contemplar los
+                                majestuosos y emblemáticos cerros de Fura y Tena lugar de cultos y rituales de nuestros
+                                aborígenes y coterráneos garantizando plena atención a nuestros turistas y visitantes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="nosotros-info">
+                    <!-- Historia -->
+                    <div class="historia">
+                        <h3>Nuestra Historia</h3>
+                        <p>Magia Fura y Tena nació del profundo amor por nuestra tierra y sus leyendas ancestrales.
+                            Inspirados por las historias de nuestros abuelos sobre los cerros gemelos Fura y Tena,
+                            creamos este proyecto para compartir la magia de este lugar único con el mundo.</p>
+                        <p>Desde 2015, hemos trabajado con las comunidades locales para desarrollar experiencias
+                            turísticas responsables que respeten el entorno y enriquezcan a nuestros visitantes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección GALERÍA -->
+    <section id="galeria" class="seccion galeria">
+        <div class="contenedor">
+            <h2 class="seccion-titulo">Galería Fotográfica</h2>
+            <p class="seccion-subtitulo">Descubre la belleza de los cerros Fura y Tena a través de nuestras fotografías
+            </p>
+
+
+            <!-- Grid de galería -->
+            <div class="galeria-grid" id="galeria-grid">
+                <!-- Las imágenes se cargarán automáticamente de img/Galeria -->
+            </div>
+        </div>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox">
+            <div class="lightbox-contenido">
+                <button class="lightbox-cerrar" id="lightbox-cerrar">
+                    <i class="fas fa-times"></i>
+                </button>
+
+                <button class="lightbox-nav prev" id="lightbox-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="lightbox-imagen-contenedor">
+                    <img id="lightbox-imagen" src="" alt="">
+                    <div class="lightbox-info">
+                        <h3 id="lightbox-titulo"></h3>
+                        <p id="lightbox-descripcion"></p>
+                    </div>
+                </div>
+
+                <button class="lightbox-nav next" id="lightbox-next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección CONTACTO -->
+    <section id="contacto" class="seccion contacto">
+        <div class="contenedor">
+            <h2 class="seccion-titulo">Contacto</h2>
+
+            <div class="contacto-contenido">
+                <!-- Formulario -->
+                <div class="contacto-formulario">
+                    <form id="form-contacto">
+                        <div class="form-grupo">
+                            <input type="text" id="nombre" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-grupo">
+                            <input type="email" id="email" placeholder="Tu email" required>
+                        </div>
+                        <div class="form-grupo">
+                            <textarea id="mensaje" placeholder="Tu mensaje" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-enviar">
+                            <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Información contacto -->
+                <div class="contacto-info">
+                    <div class="info-item">
+                        <a href="https://maps.apple/p/3JeiDEgRfE4efP" target="_blank"
+                            style="text-decoration: none; display: flex; align-items: center; color: inherit;">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Ubicación</h4>
+                                <p>Cerros Fura y Tena, Colombia</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>+57 313 210 7889</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>omarcpauna@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Horario</h4>
+                            <p>Lunes a Domingo: 8:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+
+                    <!-- Mapa estático -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Footer Cliente -->
+        <div class="footer-cliente">
+            <div class="contenedor">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <img src="img/logo.svg" alt="Logo Magia Fura y Tena" class="footer-logo">
+                        <h3 class="footer-titulo">Magia Fura y Tena</h3>
+                        <p class="footer-texto">
+                            Descubre la magia ancestral de los cerros Fura y Tena.
+                            Vive experiencias únicas conectadas con la naturaleza,
+                            mitología y cultura local.
+                        </p>
+                    </div>
+
+                    <div class="footer-col" style="opacity: 0;">
+                        <h3 class="footer-titulo">Síguenos</h3>
+                        <div class="footer-redes">
+                            <a href="#" aria-label="Instagram" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" aria-label="Facebook" target="_blank">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" aria-label="YouTube" target="_blank">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" aria-label="TikTok" target="_blank">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer-col">
+                        <h3 class="footer-titulo">Contacto</h3>
+                        <ul class="footer-contacto">
+                            <li><i class="fas fa-envelope"></i> omarcpauna@gmail.com</li>
+                            <li><i class="fas fa-phone"></i> +57 313 210 7889</li>
+                            <li><a href="https://maps.apple/p/3JeiDEgRfE4efP" target="_blank"
+                                    style="text-decoration: none; color: inherit;">
+                                    <i class="fas fa-map-marker-alt"></i> Cerros Fura y Tena, Colombia</li></a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Créditos -->
+        <div class="footer-creditos">
+            <div class="contenedor">
+                <div class="footer-derechos">
+                    <p>Diseñado con <span class="corazon">♥</span> por Grupo JJ · Programador Ing. Fredy</p>
+                    <p>&copy; 2026 Magia Fura y Tena. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón volver arriba -->
+    <button class="btn-top" id="btn-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Botón WhatsApp -->
+    <button class="btn-floating-whatsapp" id="btn-whatsapp"
+        onclick="window.open('https://wa.me/573132107889', '_blank')">
+        <i class="fab fa-whatsapp"></i>
+    </button>
+
+    <script src="js/script1.js"></script>
+    <script src="js/galeria.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+:root {
+    --verde-esmeralda: #6ec478;
+    --blanco-fondo: #f4f7f2;
+    --negro-puro: #000000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--blanco-fondo);
+    overflow-x: hidden;
+}
+
+/* --- PRELOADER (PANTALLA NEGRA) --- */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--negro-puro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.logo-entrada {
+    width: 180px;
+    opacity: 0;
+    animation: growAndFade 3s forwards ease-in-out;
+}
+
+@keyframes growAndFade {
+    0% { transform: scale(0.5); opacity: 0; }
+    40% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(4); opacity: 0; }
+}
+
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Desvanecimiento hacia el infinito abajo */
+    background: linear-gradient(to bottom, 
+        rgba(0,0,0,0.5) 0%, 
+        rgba(0,0,0,0.2) 60%, 
+        var(--negro-puro) 100%);
+    z-index: -1;
+}
+
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.main-logo {
+    width: 150px; /* Ajusta según tu diseño */
+    height: auto;
+    filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.3));
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.eslogan {
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 300;
+}
+
+/* --- MENÚ TIPO MAPA --- */
+.map-menu {
+    width: 100vw;
+    position: sticky;
+    bottom: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.menu-item {
+    color: white;
+    text-decoration: none;
+    padding: 8px 25px;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.menu-item:hover {
+    background: var(--verde-esmeralda);
+    border-color: var(--verde-esmeralda);
+    transform: translateY(-3px);
+}
+
+.line {
+    width: 40px;
+    height: 1px;
+    background: rgba(255,255,255,0.5);
+}
+
+/* --- FOOTER --- */
+.footer-derechos {
+    padding: 40px;
+    text-align: center;
+    background: var(--blanco-fondo);
+    font-size: 0.9rem;
+}
+
+.corazon { color: #e74c3c; }

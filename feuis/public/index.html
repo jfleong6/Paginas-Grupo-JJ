@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEUIS - Fondo de Empleados de la UIS</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Swiper CSS (para carruseles avanzados) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+
+    <style>
+        .logo-circle {
+            width: 150px;
+            height: 50px;
+            /* border-radius: 50%; */
+            background-image: url("Logo.svg");
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            /* box-shadow: 0 4px 12px rgba(10, 36, 99, 0.2); */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navegación Mobile Bottom -->
+    <nav class="navbar navbar-dark fixed-bottom d-lg-none bottom-nav">
+        <div class="container-fluid d-flex justify-content-around px-0">
+            <a href="#conocenos" class="nav-link text-center nav-tab active" data-tab="conocenos">
+                <i class="fas fa-building"></i>
+                <span class="d-block small">Nosotros</span>
+            </a>
+            <a href="#creditos" class="nav-link text-center nav-tab" data-tab="creditos">
+                <i class="fas fa-hand-holding-usd"></i>
+                <span class="d-block small">Créditos</span>
+            </a>
+            <a href="#convenios" class="nav-link text-center nav-tab" data-tab="convenios">
+                <i class="fas fa-handshake"></i>
+                <span class="d-block small">Convenios</span>
+            </a>
+            <a href="#documentos" class="nav-link text-center nav-tab" data-tab="documentos">
+                <i class="fas fa-file-alt"></i>
+                <span class="d-block small">Documentos</span>
+            </a>
+            <a href="#menu" class="nav-link text-center" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+                <i class="fas fa-bars"></i>
+                <span class="d-block small">Más</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Menú Hamburguesa -->
+    <div class="offcanvas offcanvas-bottom d-lg-none" tabindex="-1" id="mobileMenu">
+        <div class="offcanvas-header bg-primary text-white">
+            <h5 class="offcanvas-title">FEUIS - Menú</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="list-group">
+                <a href="#inicio" class="list-group-item list-group-item-action border-0">
+                    <i class="fas fa-home me-3 text-primary"></i>Inicio
+                </a>
+                <a href="#oficina-virtual" class="list-group-item list-group-item-action border-0">
+                    <i class="fas fa-laptop-house me-3 text-primary"></i>Oficina Virtual
+                </a>
+                <a href="#pse" class="list-group-item list-group-item-action border-0" data-bs-toggle="modal"
+                    data-bs-target="#pseModal">
+                    <i class="fas fa-credit-card me-3 text-primary"></i>Pagos PSE
+                </a>
+                <a href="#simuladores" class="list-group-item list-group-item-action border-0">
+                    <i class="fas fa-calculator me-3 text-primary"></i>Simuladores
+                </a>
+                <a href="#contacto" class="list-group-item list-group-item-action border-0">
+                    <i class="fas fa-phone me-3 text-primary"></i>Contacto
+                </a>
+                <a href="#configuracion" class="list-group-item list-group-item-action border-0">
+                    <i class="fas fa-cog me-3 text-primary"></i>Configuración
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navegación Desktop -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm d-none d-lg-block">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div class="d-flex align-items-center">
+                    <div class="logo-circle me-2">
+                    </div>
+                </div>
+            </a>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link nav-tab" href="#conocenos" data-tab="conocenos">Nosotros</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link nav-tab" href="#creditos" data-tab="creditos">Créditos</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link nav-tab" href="#convenios" data-tab="convenios">Convenios</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link nav-tab" href="#documentos" data-tab="documentos">Documentos</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex">
+                    <button class="btn btn-success me-2" id="oficinaVirtualBtn">
+                        <i class="fas fa-sign-in-alt me-2"></i>Oficina Virtual
+                    </button>
+                    <a href="https://wa.me/573001234567" target="_blank" class="btn btn-success">
+                        <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Botón WhatsApp Flotante -->
+    <a href="https://wa.me/573001234567" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Modal PSE -->
+    <div class="modal fade" id="pseModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Pago Seguro en Línea - PSE</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-credit-card fa-3x text-primary mb-3"></i>
+                        <h4>Realiza tus pagos de forma segura</h4>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="pseTipo" class="form-label">Tipo de pago</label>
+                        <select class="form-select" id="pseTipo">
+                            <option value="credito">Cuota de crédito</option>
+                            <option value="aportes">Aportes ordinarios</option>
+                            <option value="afiliacion">Cuota de afiliación</option>
+                            <option value="extraordinarios">Aportes extraordinarios</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="pseValor" class="form-label">Valor a pagar</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" class="form-control" id="pseValor" placeholder="Ej: 350.000">
+                            <button class="btn btn-outline-secondary" type="button" id="calcularCuota">
+                                <i class="fas fa-calculator"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <small>El pago se procesará a través de la red segura de PSE. Puedes usar cuentas de ahorro o
+                            corriente de cualquier banco.</small>
+                    </div>
+
+                    <button class="btn btn-primary w-100 btn-lg">
+                        <i class="fas fa-lock me-2"></i>Continuar al Pago
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Banner Principal -->
+    <section id="inicio" class="hero-section">
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <div class="hero-slide slide-1">
+                        <div class="container h-100">
+                            <div class="row h-100 align-items-center">
+                                <div class="col-lg-6 text-white">
+                                    <h1 class="display-3 fw-bold mb-3">Tu crecimiento, nuestra prioridad</h1>
+                                    <p class="lead mb-4 opacity-90">Más de 30 años fortaleciendo el futuro financiero de
+                                        la comunidad UIS. Confianza, solidez y acompañamiento en cada paso.</p>
+                                    <div class="d-flex flex-wrap gap-3">
+                                        <a href="#creditos" class="btn btn-success btn-lg px-4">
+                                            <i class="fas fa-rocket me-2"></i>Ver Créditos
+                                        </a>
+                                        <a href="#afiliacion" class="btn btn-outline-light btn-lg px-4">
+                                            <i class="fas fa-user-plus me-2"></i>Afiliarse
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                    <div class="hero-slide slide-2">
+                        <div class="container h-100">
+                            <div class="row h-100 align-items-center">
+                                <div class="col-lg-6 text-white">
+                                    <h1 class="display-3 fw-bold mb-3">13 Líneas de Crédito</h1>
+                                    <p class="lead mb-4 opacity-90">Desde libre inversión hasta créditos especializados.
+                                        Soluciones diseñadas para cada etapa de tu vida.</p>
+                                    <a href="#creditos" class="btn btn-warning btn-lg px-4">
+                                        <i class="fas fa-search-dollar me-2"></i>Explorar Opciones
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                    <div class="hero-slide slide-3">
+                        <div class="container h-100">
+                            <div class="row h-100 align-items-center">
+                                <div class="col-lg-6 text-white">
+                                    <h1 class="display-3 fw-bold mb-3">Convenios Exclusivos</h1>
+                                    <p class="lead mb-4 opacity-90">Accede a beneficios especiales en salud, educación,
+                                        turismo y más con nuestras alianzas estratégicas.</p>
+                                    <a href="#convenios" class="btn btn-info btn-lg px-4">
+                                        <i class="fas fa-gift me-2"></i>Ver Beneficios
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <!-- Contenedor de Secciones Dinámicas -->
+    <div class="sections-container">
+        <!-- Sección Conócenos (activa por defecto) -->
+        <section id="conocenos" class="section-tab active">
+            <div class="container py-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <h2 class="display-5 fw-bold mb-4">FEUIS</h2>
+                        <h3 class="h4 text-primary mb-4">Fondo de Empleados de la Universidad Industrial de Santander
+                        </h3>
+
+                        <div class="mission-vision mb-5">
+                            <div class="d-flex mb-4">
+                                <div class="flex-shrink-0">
+                                    <div class="icon-circle bg-primary text-white">
+                                        <i class="fas fa-bullseye"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 ms-4">
+                                    <h4 class="fw-bold">Nuestra Misión</h4>
+                                    <p class="text-muted">Promover el bienestar económico y social de nuestros asociados
+                                        a través de servicios financieros de calidad, fomentando el ahorro y facilitando
+                                        el acceso al crédito con condiciones preferenciales.</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <div class="icon-circle bg-success text-white">
+                                        <i class="fas fa-eye"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 ms-4">
+                                    <h4 class="fw-bold">Nuestra Visión</h4>
+                                    <p class="text-muted">Ser reconocidos como el fondo de empleados líder en Santander,
+                                        destacándonos por nuestra solidez financiera, innovación en servicios y
+                                        compromiso con el desarrollo integral de nuestra comunidad.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <div class="stat-number">30+</div>
+                                    <div class="stat-label">Años</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="stat-number">15K+</div>
+                                    <div class="stat-label">Asociados</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="stat-number">13</div>
+                                    <div class="stat-label">Líneas Crédito</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card border-0 shadow-lg">
+                            <div class="card-body p-4">
+                                <h4 class="fw-bold mb-4">Nuestros Valores</h4>
+
+                                <div class="values-list">
+                                    <div class="value-item d-flex mb-3">
+                                        <div class="value-icon me-3">
+                                            <i class="fas fa-handshake text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="fw-bold">Confianza</h5>
+                                            <p class="text-muted small">Transparencia en todas nuestras operaciones y
+                                                relaciones.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="value-item d-flex mb-3">
+                                        <div class="value-icon me-3">
+                                            <i class="fas fa-users text-success"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="fw-bold">Solidaridad</h5>
+                                            <p class="text-muted small">Apoyo mutuo entre asociados para el crecimiento
+                                                colectivo.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="value-item d-flex mb-3">
+                                        <div class="value-icon me-3">
+                                            <i class="fas fa-shield-alt text-warning"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="fw-bold">Seguridad</h5>
+                                            <p class="text-muted small">Protección de los recursos y estabilidad
+                                                financiera.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="value-item d-flex">
+                                        <div class="value-icon me-3">
+                                            <i class="fas fa-lightbulb text-info"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="fw-bold">Innovación</h5>
+                                            <p class="text-muted small">Adaptación constante para ofrecer mejores
+                                                soluciones.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 pt-3 border-top">
+                                    <a href="#contacto" class="btn btn-primary">
+                                        <i class="fas fa-comments me-2"></i>Contáctanos
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Créditos -->
+        <section id="creditos" class="section-tab">
+            <iframe src="creditos.html" style="width: 100%; height: 1000px; border: none;"></iframe>
+        </section>
+
+        <!-- Sección Convenios -->
+        <section id="convenios" class="section-tab">
+            <div class="container py-5">
+                <div class="row mb-5">
+                    <div class="col-lg-8">
+                        <h2 class="display-5 fw-bold mb-3">Convenios y Beneficios</h2>
+                        <p class="lead text-muted">Alianzas estratégicas que brindan ventajas exclusivas a nuestros
+                            asociados en diversos sectores.</p>
+                    </div>
+                </div>
+
+                <div class="row" id="grid-convenios">
+                    <!-- Los convenios se cargarán dinámicamente aquí -->
+                    <div class="col-12 text-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Cargando convenios...</span>
+                        </div>
+                        <p class="mt-2">Cargando información de convenios...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Documentos -->
+        <section id="documentos" class="section-tab">
+            <div class="container py-5">
+                <div class="row mb-5">
+                    <div class="col-lg-8">
+                        <h2 class="display-5 fw-bold mb-3">Documentos y Formatos</h2>
+                        <p class="lead text-muted">Accede a todos los formatos, reglamentos y documentos oficiales de
+                            FEUIS.</p>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card document-card h-100 border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="document-icon mb-3">
+                                    <i class="fas fa-file-contract fa-2x text-primary"></i>
+                                </div>
+                                <h4 class="fw-bold">Reglamento de Crédito</h4>
+                                <p class="text-muted mb-4">Normas y condiciones generales para el acceso a las líneas de
+                                    crédito.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-light text-dark">PDF • 1.2MB</span>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-download me-1"></i>Descargar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card document-card h-100 border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="document-icon mb-3">
+                                    <i class="fas fa-user-plus fa-2x text-success"></i>
+                                </div>
+                                <h4 class="fw-bold">Formato de Afiliación</h4>
+                                <p class="text-muted mb-4">Solicitud para nuevos asociados que desean unirse al fondo.
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-light text-dark">DOCX • 450KB</span>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-download me-1"></i>Descargar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card document-card h-100 border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="document-icon mb-3">
+                                    <i class="fas fa-file-invoice-dollar fa-2x text-warning"></i>
+                                </div>
+                                <h4 class="fw-bold">Solicitud de Crédito</h4>
+                                <p class="text-muted mb-4">Formato estándar para solicitar cualquier línea de crédito.
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-light text-dark">PDF • 850KB</span>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-download me-1"></i>Descargar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card document-card h-100 border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="document-icon mb-3">
+                                    <i class="fas fa-balance-scale fa-2x text-info"></i>
+                                </div>
+                                <h4 class="fw-bold">Estatutos FEUIS</h4>
+                                <p class="text-muted mb-4">Documento constitutivo y normativo del fondo de empleados.
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-light text-dark">PDF • 2.1MB</span>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-download me-1"></i>Descargar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card document-card h-100 border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="document-icon mb-3">
+                                    <i class="fas fa-chart-line fa-2x text-danger"></i>
+                                </div>
+                                <h4 class="fw-bold">Informe de Gestión 2025</h4>
+                                <p class="text-muted mb-4">Resultados financieros y operativos del último año.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-light text-dark">PDF • 3.4MB</span>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-download me-1"></i>Descargar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card document-card h-100 border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="document-icon mb-3">
+                                    <i class="fas fa-question-circle fa-2x text-secondary"></i>
+                                </div>
+                                <h4 class="fw-bold">Preguntas Frecuentes</h4>
+                                <p class="text-muted mb-4">Respuestas a las dudas más comunes sobre nuestros servicios.
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-light text-dark">PDF • 680KB</span>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-download me-1"></i>Descargar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Noticias -->
+    <section class="noticias-section py-5 bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8">
+                    <h2 class="display-5 fw-bold">Noticias y Actualizaciones</h2>
+                    <p class="lead text-muted">Mantente informado sobre las últimas novedades, eventos y beneficios de
+                        FEUIS.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="#todas-noticias" class="btn btn-outline-primary">
+                        Ver todas <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card noticia-card border-0 shadow-sm h-100">
+                        <div class="card-img-top">
+                            <div class="noticia-categoria bg-primary">Nuevo Convenio</div>
+                            <div class="noticia-img" style="background: linear-gradient(135deg, #0A2463, #3E78B2);">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="noticia-fecha text-muted small mb-2">
+                                <i class="far fa-calendar me-1"></i> 15 Feb, 2026
+                            </div>
+                            <h4 class="fw-bold">Nuevos convenios educativos 2026</h4>
+                            <p class="text-muted">Ampliamos nuestra red de aliados para ofrecer más opciones de
+                                formación con descuentos exclusivos.</p>
+                            <a href="#" class="btn btn-link text-decoration-none p-0">
+                                Leer más <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card noticia-card border-0 shadow-sm h-100">
+                        <div class="card-img-top">
+                            <div class="noticia-categoria bg-success">Tasas</div>
+                            <div class="noticia-img" style="background: linear-gradient(135deg, #00A896, #0A2463);">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="noticia-fecha text-muted small mb-2">
+                                <i class="far fa-calendar me-1"></i> 10 Feb, 2026
+                            </div>
+                            <h4 class="fw-bold">Tasas preferenciales 2026</h4>
+                            <p class="text-muted">Nuevas tasas reducidas para créditos de vivienda y educación para
+                                nuestros asociados.</p>
+                            <a href="#" class="btn btn-link text-decoration-none p-0">
+                                Leer más <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card noticia-card border-0 shadow-sm h-100">
+                        <div class="card-img-top">
+                            <div class="noticia-categoria bg-warning">Evento</div>
+                            <div class="noticia-img" style="background: linear-gradient(135deg, #FF6B35, #0A2463);">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="noticia-fecha text-muted small mb-2">
+                                <i class="far fa-calendar me-1"></i> 5 Feb, 2026
+                            </div>
+                            <h4 class="fw-bold">Asamblea General 2026</h4>
+                            <p class="text-muted">Convocatoria a la asamblea general ordinaria de asociados FEUIS.</p>
+                            <a href="#" class="btn btn-link text-decoration-none p-0">
+                                Leer más <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="footer-brand mb-4">
+                        <div class="logo-circle me-3 d-inline-block">
+                        </div>
+                    </div>
+                    <p class="text-light mb-4">Más de 30 años fortaleciendo el futuro financiero de nuestra comunidad
+                        universitaria.</p>
+
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="fw-bold mb-4">Enlaces</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#inicio" class="text-light text-decoration-none">Inicio</a></li>
+                        <li class="mb-2"><a href="#conocenos" class="text-light text-decoration-none nav-tab"
+                                data-tab="conocenos">Nosotros</a></li>
+                        <li class="mb-2"><a href="#creditos" class="text-light text-decoration-none nav-tab"
+                                data-tab="creditos">Créditos</a></li>
+                        <li class="mb-2"><a href="#convenios" class="text-light text-decoration-none nav-tab"
+                                data-tab="convenios">Convenios</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+                    <h5 class="fw-bold mb-4">Servicios</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#documentos" class="text-light text-decoration-none nav-tab"
+                                data-tab="documentos">Documentos</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Oficina Virtual</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Simuladores</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">PSE Pagos</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="fw-bold mb-4">Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            <span class="text-light">Bucaramanga, Santander</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-phone me-2"></i>
+                            <span class="text-light">+57 (7) 634 4000</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-envelope me-2"></i>
+                            <span class="text-light">info@feuis.com</span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-clock me-2"></i>
+                            <span class="text-light">Lun-Vie: 8:00 AM - 6:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="bg-light my-4">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2026 FEUIS. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light text-decoration-none me-3">Política de privacidad</a>
+                    <a href="#" class="text-light text-decoration-none">Términos y condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

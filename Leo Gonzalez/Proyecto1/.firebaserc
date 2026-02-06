@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "lego-tech"
+  },
+  "targets": {
+    "lego-tech": {
+      "hosting": {
+        "lego-app": [
+          "lego-tech"
+        ]
+      }
+    }
   }
 }

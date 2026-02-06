@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magia Furaytena - Servicios Turísticos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --verde-claro: #6ec478;
+            --verde-medio: #508660;
+            --verde-oscuro: #6ca78c;
+            --verde-blanco: #d6f5e3;
+            --blanco: #ffffff;
+            --negro: #1a2c1f;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--blanco);
+            color: var(--negro);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Encabezado estilo portada */
+        .header-portada {
+            background: linear-gradient(rgba(26, 44, 31, 0.85), rgba(26, 44, 31, 0.9)), 
+                        url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            color: var(--blanco);
+        }
+        
+        .logo {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--verde-claro);
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            line-height: 1;
+        }
+        
+        .subtitulo-portada {
+            font-size: 1.8rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin-bottom: 40px;
+            color: var(--verde-blanco);
+            line-height: 1.4;
+        }
+        
+        .menu {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .menu-item {
+            font-size: 1.3rem;
+            color: var(--blanco);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            background-color: rgba(110, 196, 120, 0.2);
+            border: 2px solid transparent;
+        }
+        
+        .menu-item:hover {
+            background-color: var(--verde-claro);
+            color: var(--negro);
+            border-color: var(--verde-claro);
+            transform: translateY(-5px);
+        }
+        
+        /* Sección de servicios */
+        .servicios-seccion {
+            padding: 80px 40px;
+            background-color: var(--blanco);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .titulo-seccion {
+            font-size: 3rem;
+            color: var(--verde-medio);
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .titulo-seccion::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background-color: var(--verde-claro);
+            border-radius: 2px;
+        }
+        
+        .carrusel-contenedor {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        /* Vista principal del servicio */
+        .vista-principal {
+            background: linear-gradient(135deg, var(--verde-blanco) 0%, #e8f8ed 100%);
+            border-radius: 20px;
+            padding: 60px;
+            width: 100%;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(80, 134, 96, 0.15);
+            margin-bottom: 50px;
+            border: 2px solid var(--verde-oscuro);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .vista-principal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background-color: var(--verde-claro);
+            opacity: 0.1;
+            border-radius: 50%;
+            transform: translate(100px, -100px);
+        }
+        
+        .vista-principal::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            background-color: var(--verde-medio);
+            opacity: 0.1;
+            border-radius: 50%;
+            transform: translate(-50px, 50px);
+        }
+        
+        .nombre-servicio {
+            font-size: 3.5rem;
+            color: var(--verde-medio);
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+        
+        .descripcion-servicio {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--negro);
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .caracteristicas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .caracteristica {
+            background-color: var(--verde-claro);
+            color: var(--negro);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(110, 196, 120, 0.3);
+        }
+        
+        .caracteristica i {
+            font-size: 1.2rem;
+        }
+        
+        /* Iconos de servicios */
+        .iconos-servicios {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .icono-servicio {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .icono-servicio i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            transition: all 0.5s ease;
+        }
+        
+        .icono-servicio span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            max-width: 90px;
+            transition: all 0.5s ease;
+        }
+        
+        .icono-servicio.activo {
+            transform: translateY(-20px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .icono-servicio:hover:not(.activo) {
+            transform: translateY(-10px);
+        }
+        
+        /* Navegación */
+        .navegacion {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .btn-navegacion {
+            background-color: var(--verde-medio);
+            color: var(--blanco);
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(80, 134, 96, 0.4);
+        }
+        
+        .btn-navegacion:hover {
+            background-color: var(--verde-oscuro);
+            transform: translateY(-5px);
+        }
+        
+        .btn-navegacion:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .contador {
+            font-size: 1.2rem;
+            color: var(--verde-medio);
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        
+        /* Animaciones */
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .fade-out {
+            animation: fadeOut 0.5s ease forwards;
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.6s ease forwards;
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.6s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .logo {
+                font-size: 4rem;
+            }
+            
+            .subtitulo-portada {
+                font-size: 1.5rem;
+            }
+            
+            .nombre-servicio {
+                font-size: 2.8rem;
+            }
+            
+            .vista-principal {
+                padding: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-portada {
+                height: 80vh;
+            }
+            
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .subtitulo-portada {
+                font-size: 1.2rem;
+                padding: 0 20px;
+            }
+            
+            .menu {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .servicios-seccion {
+                padding: 40px 20px;
+            }
+            
+            .titulo-seccion {
+                font-size: 2.5rem;
+            }
+            
+            .nombre-servicio {
+                font-size: 2.2rem;
+            }
+            
+            .descripcion-servicio {
+                font-size: 1.1rem;
+            }
+            
+            .vista-principal {
+                padding: 30px 20px;
+            }
+            
+            .iconos-servicios {
+                gap: 20px;
+            }
+            
+            .icono-servicio {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .icono-servicio i {
+                font-size: 2rem;
+            }
+            
+            .icono-servicio span {
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Estilos para los colores de cada servicio */
+        .color-1 { background-color: #6ec478; color: #1a2c1f; }
+        .color-2 { background-color: #508660; color: white; }
+        .color-3 { background-color: #6ca78c; color: white; }
+        .color-4 { background-color: #d6f5e3; color: #1a2c1f; }
+        .color-5 { background-color: #6ec478; color: #1a2c1f; }
+        .color-6 { background-color: #508660; color: white; }
+        .color-7 { background-color: #6ca78c; color: white; }
+        .color-8 { background-color: #d6f5e3; color: #1a2c1f; }
+        .color-9 { background-color: #6ec478; color: #1a2c1f; }
+        .color-10 { background-color: #508660; color: white; }
+        
+        .color-1-bg { background-color: rgba(110, 196, 120, 0.15); }
+        .color-2-bg { background-color: rgba(80, 134, 96, 0.15); }
+        .color-3-bg { background-color: rgba(108, 167, 140, 0.15); }
+        .color-4-bg { background-color: rgba(214, 245, 227, 0.3); }
+        .color-5-bg { background-color: rgba(110, 196, 120, 0.15); }
+        .color-6-bg { background-color: rgba(80, 134, 96, 0.15); }
+        .color-7-bg { background-color: rgba(108, 167, 140, 0.15); }
+        .color-8-bg { background-color: rgba(214, 245, 227, 0.3); }
+        .color-9-bg { background-color: rgba(110, 196, 120, 0.15); }
+        .color-10-bg { background-color: rgba(80, 134, 96, 0.15); }
+    </style>
+</head>
+<body>
+    <!-- Portada -->
+    <header class="header-portada">
+        <h1 class="logo">Magia Furaytena</h1>
+        <p class="subtitulo-portada">Maravilla natural, tesoro ancestral de mitología y leyenda</p>
+        
+        <nav class="menu">
+            <a href="#servicios" class="menu-item">Servicios</a>
+            <a href="#nosotros" class="menu-item">Nosotros</a>
+            <a href="#contacto" class="menu-item">Contacto</a>
+        </nav>
+    </header>
+    
+    <!-- Sección de servicios -->
+    <section id="servicios" class="servicios-seccion">
+        <h2 class="titulo-seccion">Servicios</h2>
+        
+        <div class="carrusel-contenedor">
+            <!-- Vista principal del servicio -->
+            <div class="vista-principal" id="vista-principal">
+                <!-- Contenido dinámico se insertará aquí -->
+            </div>
+            
+            <!-- Iconos de servicios (carrusel) -->
+            <div class="iconos-servicios" id="iconos-servicios">
+                <!-- Los iconos se insertarán dinámicamente -->
+            </div>
+            
+            <!-- Navegación -->
+            <div class="navegacion">
+                <button class="btn-navegacion" id="btn-anterior">
+                    <i class="fas fa-chevron-left"></i> Anterior
+                </button>
+                <button class="btn-navegacion" id="btn-siguiente">
+                    Siguiente <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="contador" id="contador">
+                <!-- Contador dinámico -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Paleta de colores (solo para referencia visual) -->
+    <div style="position: fixed; bottom: 20px; right: 20px; display: flex; gap: 5px; z-index: 1000;">
+        <div style="width: 20px; height: 20px; background-color: #6ec478; border-radius: 50%;" title="#6ec478"></div>
+        <div style="width: 20px; height: 20px; background-color: #508660; border-radius: 50%;" title="#508660"></div>
+        <div style="width: 20px; height: 20px; background-color: #6ca78c; border-radius: 50%;" title="#6ca78c"></div>
+        <div style="width: 20px; height: 20px; background-color: #d6f5e3; border-radius: 50%;" title="#d6f5e3"></div>
+    </div>
+
+    <script>
+        // Datos de los servicios
+        const servicios = [
+            {
+                id: 1,
+                nombre: "Panorámicas a Fura y Tena",
+                descripcion: "Disfruta de vistas espectaculares a los majestuosos cerros Fura y Tena, dos monumentos naturales que dominan el paisaje local. Ofrecemos miradores estratégicamente ubicados para capturar las mejores fotografías y experiencias visuales.",
+                icono: "fas fa-mountain",
+                colorClass: "color-1",
+                bgClass: "color-1-bg",
+                caracteristicas: [
+                    { texto: "Miradores estratégicos", icono: "fas fa-binoculars" },
+                    { texto: "Fotografía panorámica", icono: "fas fa-camera" },
+                    { texto: "Acompañamiento guiado", icono: "fas fa-user-friends" },
+                    { texto: "Horarios flexibles", icono: "fas fa-clock" }
+                ]
+            },
+            {
+                id: 2,
+                nombre: "Hospedaje Rural",
+                descripcion: "Vive la auténtica experiencia campesina en nuestras cómodas y acogedoras habitaciones rurales. Confort y tradición se combinan para ofrecerte una estadía inolvidable en contacto directo con la naturaleza.",
+                icono: "fas fa-home",
+                colorClass: "color-2",
+                bgClass: "color-2-bg",
+                caracteristicas: [
+                    { texto: "Habitaciones cómodas", icono: "fas fa-bed" },
+                    { texto: "Ambiente campesino", icono: "fas fa-leaf" },
+                    { texto: "Wi-Fi disponible", icono: "fas fa-wifi" },
+                    { texto: "Desayuno incluido", icono: "fas fa-coffee" }
+                ]
+            },
+            {
+                id: 3,
+                nombre: "Museo del campesino",
+                descripcion: "Conoce la historia, tradiciones y herramientas del campesinado local en nuestro museo interactivo. Una experiencia educativa y cultural que te transportará a las raíces de nuestra comunidad.",
+                icono: "fas fa-landmark",
+                colorClass: "color-3",
+                bgClass: "color-3-bg",
+                caracteristicas: [
+                    { texto: "Exhibiciones interactivas", icono: "fas fa-desktop" },
+                    { texto: "Herramientas históricas", icono: "fas fa-tools" },
+                    { texto: "Guías especializados", icono: "fas fa-user-tie" },
+                    { texto: "Recorrido cultural", icono: "fas fa-map-signs" }
+                ]
+            },
+            {
+                id: 4,
+                nombre: "Galeria Temática a la Esmeralda",
+                descripcion: "Adéntrate en el fascinante mundo de las esmeraldas, piedra preciosa emblemática de la región. Nuestra galería muestra el proceso de extracción, tallado y valoración de estas gemas.",
+                icono: "fas fa-gem",
+                colorClass: "color-4",
+                bgClass: "color-4-bg",
+                caracteristicas: [
+                    { texto: "Exhibición de esmeraldas", icono: "fas fa-gem" },
+                    { texto: "Proceso de tallado", icono: "fas fa-cut" },
+                    { texto: "Venta de joyería", icono: "fas fa-ring" },
+                    { texto: "Talleres educativos", icono: "fas fa-chalkboard-teacher" }
+                ]
+            },
+            {
+                id: 5,
+                nombre: "Caminatas ecológicas",
+                descripcion: "Explora senderos naturales rodeados de biodiversidad con nuestras caminatas ecológicas guiadas. Una oportunidad para conectarte con la naturaleza y aprender sobre la flora y fauna local.",
+                icono: "fas fa-hiking",
+                colorClass: "color-5",
+                bgClass: "color-5-bg",
+                caracteristicas: [
+                    { texto: "Senderos señalizados", icono: "fas fa-sign" },
+                    { texto: "Guías especializados", icono: "fas fa-compass" },
+                    { texto: "Avistamiento de aves", icono: "fas fa-dove" },
+                    { texto: "Diferentes niveles", icono: "fas fa-mountain" }
+                ]
+            },
+            {
+                id: 6,
+                nombre: "Gastronomía campesina previa reservación",
+                descripcion: "Saborea la auténtica cocina campesina preparada con ingredientes locales y recetas tradicionales. Una experiencia culinaria que despierta todos los sentidos (servicio con reservación previa).",
+                icono: "fas fa-utensils",
+                colorClass: "color-6",
+                bgClass: "color-6-bg",
+                caracteristicas: [
+                    { texto: "Platos típicos", icono: "fas fa-utensil-spoon" },
+                    { texto: "Ingredientes locales", icono: "fas fa-seedling" },
+                    { texto: "Reservación previa", icono: "fas fa-calendar-check" },
+                    { texto: "Menú degustación", icono: "fas fa-concierge-bell" }
+                ]
+            },
+            {
+                id: 7,
+                nombre: "Peña del Corazon Encantado",
+                descripcion: "Noche de música folclórica, danzas tradicionales y diversión en nuestra peña cultural. Un espacio donde la alegría y las tradiciones se encuentran para crear recuerdos inolvidables.",
+                icono: "fas fa-music",
+                colorClass: "color-7",
+                bgClass: "color-7-bg",
+                caracteristicas: [
+                    { texto: "Música en vivo", icono: "fas fa-guitar" },
+                    { texto: "Danzas tradicionales", icono: "fas fa-user-friends" },
+                    { texto: "Bar con bebidas típicas", icono: "fas fa-glass-cheers" },
+                    { texto: "Ambiente familiar", icono: "fas fa-home" }
+                ]
+            },
+            {
+                id: 8,
+                nombre: "Cascada el baño de los abuelos",
+                descripcion: "Visita esta impresionante cascada de aguas cristalinas, llamada así por la tradición local que cuenta que era el lugar preferido de los ancianos para refrescarse y compartir sabiduría.",
+                icono: "fas fa-water",
+                colorClass: "color-8",
+                bgClass: "color-8-bg",
+                caracteristicas: [
+                    { texto: "Cascada natural", icono: "fas fa-water" },
+                    { texto: "Zona de baño", icono: "fas fa-swimmer" },
+                    { texto: "Leyendas locales", icono: "fas fa-book" },
+                    { texto: "Paisaje exuberante", icono: "fas fa-tree" }
+                ]
+            },
+            {
+                id: 9,
+                nombre: "Charco la Moya",
+                descripcion: "Sumérgete en las aguas tranquilas y refrescantes del Charco La Moya, un paraíso natural ideal para el relax y la conexión con el entorno. Un lugar perfecto para escapar del calor y el estrés.",
+                icono: "fas fa-swimming-pool",
+                colorClass: "color-9",
+                bgClass: "color-9-bg",
+                caracteristicas: [
+                    { texto: "Aguas cristalinas", icono: "fas fa-tint" },
+                    { texto: "Zona de descanso", icono: "fas fa-umbrella-beach" },
+                    { texto: "Naturaleza preservada", icono: "fas fa-leaf" },
+                    { texto: "Acceso seguro", icono: "fas fa-shield-alt" }
+                ]
+            },
+            {
+                id: 10,
+                nombre: "El enxanto de las mariposas azules",
+                descripcion: "Admira el fascinante espectáculo de las mariposas azules en su hábitat natural. Un santuario donde estas criaturas aladas realizan su danza aérea, creando un paisaje mágico y colorido.",
+                icono: "fas fa-butterfly",
+                colorClass: "color-10",
+                bgClass: "color-10-bg",
+                caracteristicas: [
+                    { texto: "Santuario natural", icono: "fas fa-pagelines" },
+                    { texto: "Especies endémicas", icono: "fas fa-feather-alt" },
+                    { texto: "Fotografía permitida", icono: "fas fa-camera" },
+                    { texto: "Visitas guiadas", icono: "fas fa-map-marked-alt" }
+                ]
+            }
+        ];
+
+        // Estado actual
+        let servicioActual = 0;
+        
+        // Referencias a elementos del DOM
+        const vistaPrincipal = document.getElementById('vista-principal');
+        const iconosServicios = document.getElementById('iconos-servicios');
+        const btnAnterior = document.getElementById('btn-anterior');
+        const btnSiguiente = document.getElementById('btn-siguiente');
+        const contador = document.getElementById('contador');
+
+        // Inicializar la interfaz
+        function inicializarInterfaz() {
+            // Crear los iconos del carrusel
+            servicios.forEach((servicio, index) => {
+                const icono = document.createElement('div');
+                icono.className = `icono-servicio ${servicio.colorClass} ${index === servicioActual ? 'activo' : ''}`;
+                icono.dataset.id = index;
+                
+                icono.innerHTML = `
+                    <i class="${servicio.icono}"></i>
+                    <span>${servicio.nombre.split(' ').slice(0, 2).join(' ')}</span>
+                `;
+                
+                icono.addEventListener('click', () => {
+                    cambiarServicio(index);
+                });
+                
+                iconosServicios.appendChild(icono);
+            });
+            
+            // Mostrar primer servicio
+            mostrarServicio(servicioActual);
+            
+            // Configurar navegación
+            btnAnterior.addEventListener('click', () => cambiarServicio(servicioActual - 1));
+            btnSiguiente.addEventListener('click', () => cambiarServicio(servicioActual + 1));
+            
+            // Navegación con teclado
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    cambiarServicio(servicioActual - 1);
+                } else if (e.key === 'ArrowRight') {
+                    cambiarServicio(servicioActual + 1);
+                }
+            });
+        }
+
+        // Cambiar servicio con animación
+        function cambiarServicio(nuevoIndice) {
+            // Validar índice
+            if (nuevoIndice < 0 || nuevoIndice >= servicios.length) return;
+            
+            // Obtener dirección de la animación
+            const direccion = nuevoIndice > servicioActual ? 'derecha' : 'izquierda';
+            
+            // Aplicar animación de salida
+            vistaPrincipal.classList.add('fade-out');
+            
+            setTimeout(() => {
+                // Actualizar servicio actual
+                servicioActual = nuevoIndice;
+                
+                // Actualizar iconos activos
+                document.querySelectorAll('.icono-servicio').forEach(icono => {
+                    icono.classList.remove('activo');
+                });
+                document.querySelector(`.icono-servicio[data-id="${servicioActual}"]`).classList.add('activo');
+                
+                // Mostrar nuevo servicio
+                mostrarServicio(servicioActual);
+                
+                // Aplicar animación de entrada según dirección
+                vistaPrincipal.classList.remove('fade-out');
+                vistaPrincipal.classList.add(direccion === 'derecha' ? 'slide-in-right' : 'slide-in-left');
+                
+                // Remover clase de animación después de que termine
+                setTimeout(() => {
+                    vistaPrincipal.classList.remove('slide-in-right', 'slide-in-left');
+                }, 600);
+                
+                // Actualizar estado de botones
+                btnAnterior.disabled = servicioActual === 0;
+                btnSiguiente.disabled = servicioActual === servicios.length - 1;
+                
+                // Actualizar contador
+                contador.textContent = `Servicio ${servicioActual + 1} de ${servicios.length}`;
+            }, 500);
+        }
+
+        // Mostrar detalles del servicio
+        function mostrarServicio(indice) {
+            const servicio = servicios[indice];
+            
+            vistaPrincipal.className = `vista-principal ${servicio.bgClass} fade-in`;
+            vistaPrincipal.innerHTML = `
+                <h2 class="nombre-servicio">${servicio.nombre}</h2>
+                <p class="descripcion-servicio">${servicio.descripcion}</p>
+                <div class="caracteristicas">
+                    ${servicio.caracteristicas.map(caract => `
+                        <div class="caracteristica">
+                            <i class="${caract.icono}"></i>
+                            <span>${caract.texto}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            // Actualizar contador
+            contador.textContent = `Servicio ${indice + 1} de ${servicios.length}`;
+        }
+
+        // Inicializar cuando el DOM esté cargado
+        document.addEventListener('DOMContentLoaded', inicializarInterfaz);
+    </script>
+</body>
+</html>

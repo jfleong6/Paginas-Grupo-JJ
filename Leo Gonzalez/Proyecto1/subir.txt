@@ -1,0 +1,3 @@
+firebase target:apply hosting lego-tech-target lego-tech
+
+firebase deploy --only hosting:lego-tech
